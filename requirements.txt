@@ -1,0 +1,8 @@
+# Django framework
+Django>=4.2,<5.0
+
+# Optional: Production server (uncomment if needed)
+# gunicorn>=21.0,<23.0
+
+# Optional: PostgreSQL adapter (uncomment if switching from SQLite)
+# psycopg2-binary>=2.9,<3.0
