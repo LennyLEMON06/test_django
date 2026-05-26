@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Интернет-магазин «Память»{% endblock %}
+
+{% block content %}
+<!-- Slider -->
+{% if slider %}
+<div id="mainSlider" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        {% for slide in slider %}
+        <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="{{ forloop.counter0 }}" 
+                {% if forloop.first %}class="active"{% endif %}></button>
+        {% endfor %}
+    </div>
+    <div class="carousel-inner">
+        {% for slide in slider %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            {% if slide.image %}
+            <img src="{{ slide.image.url }}" class="d-block w-100" alt="{{ slide.title }}" style="height: 400px; object-fit: cover;">
+            {% else %}
+            <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 400px;">
+                <div class="text-center">
+                    <h2>{{ slide.title }}</h2>
+                    {% if slide.subtitle %}<p class="lead">{{ slide.subtitle }}</p>{% endif %}
+                </div>
+            </div>
+            {% endif %}
+            {% if slide.link %}
+            <a href="{{ slide.link }}" class="btn btn-primary position-absolute bottom-0 mb-3">Подробнее</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+{% endif %}
+
+<!-- Популярные товары -->
+<section class="mb-5">
+    <h2 class="text-center mb-4">Популярные товары</h2>
+    <div class="row">
+        {% for product in popular_products %}
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <span class="text-muted">Нет фото</span>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text fw-bold text-primary">{{ product.price }} ₽</p>
+                    <a href="{% url 'goods:product_detail' product.pk %}" class="btn btn-outline-primary btn-sm">Подробнее</a>
+                    <a href="{% url 'cart:add' product.pk %}" class="btn btn-primary btn-sm">В корзину</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center text-muted">Популярных товаров пока нет</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Последние новости -->
+<section class="mb-5">
+    <h2 class="text-center mb-4">Последние новости</h2>
+    <div class="row">
+        {% for news_item in latest_news %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                {% if news_item.image %}
+                <img src="{{ news_item.image.url }}" class="card-img-top" alt="{{ news_item.title }}" style="height: 150px; object-fit: cover;">
+                {% else %}
+                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
+                    <span class="text-muted">📰</span>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ news_item.title }}</h5>
+                    <p class="card-text small text-muted">{{ news_item.created_at|date:"d.m.Y" }}</p>
+                    <p class="card-text">{{ news_item.text|truncatewords:15 }}</p>
+                    <a href="{% url 'news:news_detail' news_item.pk %}" class="btn btn-outline-primary btn-sm">Читать далее</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center text-muted">Новостей пока нет</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Новости - Интернет-магазин «Память»{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Новости</h1>
+
+<div class="row">
+    {% for news_item in news %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100">
+            {% if news_item.image %}
+            <img src="{{ news_item.image.url }}" class="card-img-top" alt="{{ news_item.title }}" style="height: 200px; object-fit: cover;">
+            {% else %}
+            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                <span class="text-muted fs-1">📰</span>
+            </div>
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ news_item.title }}</h5>
+                <p class="card-text small text-muted">{{ news_item.created_at|date:"d.m.Y" }}</p>
+                <p class="card-text">{{ news_item.text|truncatewords:20 }}</p>
+                <a href="{% url 'news:news_detail' news_item.pk %}" class="btn btn-outline-primary btn-sm">Читать далее</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="alert alert-info">
+            Новостей пока нет.
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
