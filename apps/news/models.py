@@ -3,15 +3,19 @@ from django.db import models
 
 class News(models.Model):
     """Новость магазина"""
-    title = models.CharField(max_length=200, verbose_name='Заголовок')
-    text = models.TextField(verbose_name='Текст')
-    image = models.ImageField(upload_to='news/', blank=True, null=True, verbose_name='Изображение')
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    
+    title = models.CharField("Заголовок", max_length=200)
+    text = models.TextField("Текст")
+    image = models.ImageField("Изображение", upload_to='news/', blank=True, null=True)
+    created_at = models.DateTimeField("Дата создания", auto_now_add=True)
+    is_active = models.BooleanField("Активна", default=True)
+
     class Meta:
-        verbose_name = 'Новость'
-        verbose_name_plural = 'Новости'
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"
         ordering = ['-created_at']
-    
+
     def __str__(self):
         return self.title
+
+    def get_short_text(self):
+        return self.text[:150] + '...' if len(self.text) > 150 else self.text

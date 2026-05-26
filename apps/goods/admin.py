@@ -10,22 +10,21 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price', 'product_type', 'is_popular', 'created_at')
-    list_filter = ('category', 'product_type', 'is_popular')
+    list_display = ('name', 'category', 'price', 'product_type', 'is_popular', 'is_active')
+    list_filter = ('category', 'product_type', 'is_popular', 'is_active', 'material')
     search_fields = ('name', 'description')
-    prepopulated_fields = {}  # Можно добавить slug если будет
-    list_editable = ('is_popular',)
+    list_editable = ('is_popular', 'is_active')
     
     fieldsets = (
-        ('Основная информация', {
-            'fields': ('category', 'name', 'description', 'price', 'image', 'product_type', 'is_popular')
+        ('Основное', {
+            'fields': ('category', 'name', 'description', 'price', 'image', 'product_type', 'is_popular', 'is_active')
         }),
         ('Характеристики памятника', {
-            'fields': ('monument_length', 'monument_width', 'monument_thickness', 'monument_material'),
+            'fields': ('monument_length', 'monument_width', 'monument_thickness', 'material'),
             'classes': ('collapse',)
         }),
         ('Характеристики плитки', {
-            'fields': ('tile_length', 'tile_width', 'tile_coating', 'tile_package_quantity'),
+            'fields': ('tile_length', 'tile_width', 'coating_type', 'tiles_per_pack'),
             'classes': ('collapse',)
         }),
     )

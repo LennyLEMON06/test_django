@@ -3,31 +3,32 @@ from django.db import models
 
 class ContactInfo(models.Model):
     """Контактная информация магазина"""
-    phone = models.CharField(max_length=20, verbose_name='Телефон')
-    email = models.EmailField(verbose_name='Email')
-    address = models.TextField(verbose_name='Адрес')
-    
+    phone = models.CharField("Телефон", max_length=20)
+    email = models.EmailField("Email")
+    address = models.CharField("Адрес", max_length=255)
+    working_hours = models.CharField("Режим работы", max_length=255, blank=True)
+
     class Meta:
-        verbose_name = 'Контакт'
-        verbose_name_plural = 'Контакты'
-    
+        verbose_name = "Контакт"
+        verbose_name_plural = "Контакты"
+
     def __str__(self):
-        return f'{self.phone} - {self.address}'
+        return self.phone
 
 
 class Slider(models.Model):
     """Слайдер для главной страницы"""
-    title = models.CharField(max_length=200, verbose_name='Заголовок')
-    subtitle = models.CharField(max_length=300, blank=True, verbose_name='Подзаголовок')
-    image = models.ImageField(upload_to='slider/', verbose_name='Изображение')
-    link = models.URLField(blank=True, null=True, verbose_name='Ссылка')
-    order = models.PositiveIntegerField(default=0, verbose_name='Порядок отображения')
-    is_active = models.BooleanField(default=True, verbose_name='Активен')
-    
+    title = models.CharField("Заголовок", max_length=100)
+    subtitle = models.CharField("Подзаголовок", max_length=255, blank=True)
+    image = models.ImageField("Изображение", upload_to='slider/')
+    link = models.URLField("Ссылка", blank=True)
+    order = models.PositiveIntegerField("Порядок", default=0)
+    is_active = models.BooleanField("Активен", default=True)
+
     class Meta:
-        verbose_name = 'Слайд'
-        verbose_name_plural = 'Слайдер'
+        verbose_name = "Слайд"
+        verbose_name_plural = "Слайдер"
         ordering = ['order']
-    
+
     def __str__(self):
         return self.title

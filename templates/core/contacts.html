@@ -1,44 +1,53 @@
 {% extends 'base.html' %}
 
-{% block title %}Контакты - Интернет-магазин «Память»{% endblock %}
+{% block title %}Контакты - Память{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Контакты</h1>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="card mb-4">
-            <div class="card-body">
-                <h3 class="card-title">Наш магазин</h3>
-                {% if contacts %}
-                <p class="card-text">
-                    <strong>📞 Телефон:</strong> {{ contacts.phone }}<br>
-                    <strong>✉️ Email:</strong> {{ contacts.email }}<br>
-                    <strong>📍 Адрес:</strong> {{ contacts.address }}
-                </p>
-                {% else %}
-                <p class="card-text">
-                    <strong>📞 Телефон:</strong> +7 (495) 123-45-67<br>
-                    <strong>✉️ Email:</strong> info@pamyat.ru<br>
-                    <strong>📍 Адрес:</strong> г. Москва, ул. Примерная, д. 10
-                </p>
-                {% endif %}
+<div class="container py-5">
+    <h1 class="mb-4">Контакты</h1>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3>Наш магазин</h3>
+                    {% if contact %}
+                        <p><i class="bi bi-telephone"></i> <strong>Телефон:</strong> {{ contact.phone }}</p>
+                        <p><i class="bi bi-envelope"></i> <strong>Email:</strong> {{ contact.email }}</p>
+                        <p><i class="bi bi-geo-alt"></i> <strong>Адрес:</strong> {{ contact.address }}</p>
+                        {% if contact.working_hours %}
+                            <p><i class="bi bi-clock"></i> <strong>Режим работы:</strong> {{ contact.working_hours }}</p>
+                        {% endif %}
+                    {% else %}
+                        <p><i class="bi bi-telephone"></i> <strong>Телефон:</strong> +7 (XXX) XXX-XX-XX</p>
+                        <p><i class="bi bi-envelope"></i> <strong>Email:</strong> info@pamyat.ru</p>
+                        <p><i class="bi bi-geo-alt"></i> <strong>Адрес:</strong> г. Москва, ул. Примерная, д. 1</p>
+                        <p><i class="bi bi-clock"></i> <strong>Режим работы:</strong> Пн-Пт: 9:00-18:00</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">Режим работы</h3>
-                <p class="card-text">
-                    <strong>Пн-Пт:</strong> 9:00 - 18:00<br>
-                    <strong>Сб-Вс:</strong> 10:00 - 16:00
-                </p>
-                <hr>
-                <p class="text-muted small">
-                    Мы работаем без перерывов и выходных.<br>
-                    Всегда готовы помочь вам в трудную минуту.
-                </p>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3>Напишите нам</h3>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Ваше имя</label>
+                            <input type="text" class="form-control" placeholder="Иван">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" placeholder="email@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Сообщение</label>
+                            <textarea class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

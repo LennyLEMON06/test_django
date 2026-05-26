@@ -1,110 +1,106 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.http import JsonResponse
 from apps.goods.models import Product
-from apps.cart.models import Cart, CartItem
-from apps.orders.models import Order, OrderItem
+from .models import Cart, CartItem
 
 
-def get_cart(request):
-    """Получить корзину пользователя (из сессии или БД)"""
+def get_or_create_cart(request):
+    """Получить или создать корзину для пользователя/сессии"""
     if request.user.is_authenticated:
-        cart, _ = Cart.objects.get_or_create(user=request.user)
-    else:
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        # Если была корзина в сессии, перенести товары
         session_key = request.session.session_key
-        if not session_key:
+        if session_key:
+            try:
+                session_cart = Cart.objects.get(session_key=session_key)
+                for item in session_cart.items.all():
+                    cart_item, _ = CartItem.objects.get_or_create(
+                        cart=cart,
+                        product=item.product,
+                        defaults={'quantity': item.quantity}
+                    )
+                    if not _:
+                        cart_item.quantity += item.quantity
+                        cart_item.save()
+                    item.delete()
+                session_cart.delete()
+            except Cart.DoesNotExist:
+                pass
+        return cart
+    else:
+        if not request.session.session_key:
             request.session.create()
-            session_key = request.session.session_key
-        cart, _ = Cart.objects.get_or_create(session_key=session_key)
-    return cart
+        cart, created = Cart.objects.get_or_create(session_key=request.session.session_key)
+        return cart
 
 
 def cart_view(request):
     """Страница корзины"""
-    cart = get_cart(request)
+    cart = get_or_create_cart(request)
     items = cart.items.select_related('product').all()
-    
-    context = {
-        'cart': cart,
-        'items': items,
-    }
-    return render(request, 'cart/cart.html', context)
+    return render(request, 'cart/cart.html', {'cart': cart, 'items': items})
 
 
-def cart_add(request, pk):
+def cart_add(request, product_id):
     """Добавить товар в корзину"""
-    product = get_object_or_404(Product, pk=pk)
-    cart = get_cart(request)
+    product = get_object_or_404(Product, pk=product_id, is_active=True)
+    cart = get_or_create_cart(request)
+    
+    quantity = int(request.POST.get('quantity', 1))
     
     cart_item, created = CartItem.objects.get_or_create(
         cart=cart,
         product=product,
-        defaults={'quantity': 1}
+        defaults={'quantity': quantity}
     )
     
     if not created:
-        cart_item.quantity += 1
+        cart_item.quantity += quantity
         cart_item.save()
     
-    return redirect('cart:cart')
+    messages.success(request, f'{product.name} добавлен в корзину')
+    
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        return JsonResponse({'cart_count': cart.get_total_items()})
+    
+    return redirect(request.META.get('HTTP_REFERER', 'cart:cart'))
 
 
-def cart_remove(request, pk):
+def cart_remove(request, product_id):
     """Удалить товар из корзины"""
-    cart = get_cart(request)
-    cart_item = get_object_or_404(CartItem, cart=cart, product_id=pk)
-    cart_item.delete()
+    cart = get_or_create_cart(request)
+    try:
+        item = cart.items.get(product_id=product_id)
+        item.delete()
+        messages.success(request, 'Товар удалён из корзины')
+    except CartItem.DoesNotExist:
+        pass
     
     return redirect('cart:cart')
 
 
-def cart_update(request, pk):
-    """Обновить количество товара в корзине"""
-    cart = get_cart(request)
-    cart_item = get_object_or_404(CartItem, cart=cart, product_id=pk)
+def cart_update(request, product_id):
+    """Обновить количество товара"""
+    cart = get_or_create_cart(request)
+    quantity = int(request.POST.get('quantity', 1))
     
-    if request.method == 'POST':
-        quantity = int(request.POST.get('quantity', 1))
+    try:
+        item = cart.items.get(product_id=product_id)
         if quantity > 0:
-            cart_item.quantity = quantity
-            cart_item.save()
+            item.quantity = quantity
+            item.save()
+        else:
+            item.delete()
+    except CartItem.DoesNotExist:
+        pass
     
     return redirect('cart:cart')
 
 
-@login_required
-def create_order(request):
-    """Оформление заказа"""
-    cart = get_cart(request)
-    items = cart.items.select_related('product').all()
-    
-    if not items:
-        return redirect('cart:cart')
-    
-    if request.method == 'POST':
-        order = Order.objects.create(
-            user=request.user,
-            first_name=request.POST.get('first_name', ''),
-            last_name=request.POST.get('last_name', ''),
-            phone=request.POST.get('phone', ''),
-            address=request.POST.get('address', ''),
-            comment=request.POST.get('comment', ''),
-        )
-        
-        for item in items:
-            OrderItem.objects.create(
-                order=order,
-                product=item.product,
-                quantity=item.quantity,
-                price=item.product.price,
-            )
-        
-        # Очистить корзину
-        cart.items.all().delete()
-        
-        return redirect('orders:order_success', pk=order.pk)
-    
-    context = {
-        'cart': cart,
-        'items': items,
-    }
-    return render(request, 'orders/create_order.html', context)
+def cart_clear(request):
+    """Очистить корзину"""
+    cart = get_or_create_cart(request)
+    cart.clear()
+    messages.success(request, 'Корзина очищена')
+    return redirect('cart:cart')
