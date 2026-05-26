@@ -112,11 +112,12 @@
     "image": "",
     "product_type": "product",
     "is_popular": true,
+    "is_active": true,
     "created_at": "2024-01-01T00:00:00Z",
     "monument_length": 100,
     "monument_width": 50,
     "monument_thickness": 8,
-    "monument_material": "Гранит чёрный"
+    "material": "granite"
   }
 },
 {
@@ -130,11 +131,12 @@
     "image": "",
     "product_type": "product",
     "is_popular": true,
+    "is_active": true,
     "created_at": "2024-01-01T00:00:00Z",
     "monument_length": 120,
     "monument_width": 60,
     "monument_thickness": 10,
-    "monument_material": "Мрамор белый"
+    "material": "marble"
   }
 },
 {
@@ -148,15 +150,16 @@
     "image": "",
     "product_type": "product",
     "is_popular": false,
+    "is_active": true,
     "created_at": "2024-01-01T00:00:00Z",
     "monument_length": null,
     "monument_width": null,
     "monument_thickness": null,
-    "monument_material": "",
+    "material": null,
     "tile_length": 20,
     "tile_width": 10,
-    "tile_coating": "Шероховатое",
-    "tile_package_quantity": 50
+    "coating_type": "thermo",
+    "tiles_per_pack": 50
   }
 },
 {
@@ -170,15 +173,16 @@
     "image": "",
     "product_type": "product",
     "is_popular": true,
+    "is_active": true,
     "created_at": "2024-01-01T00:00:00Z",
     "monument_length": null,
     "monument_width": null,
     "monument_thickness": null,
-    "monument_material": "",
+    "material": null,
     "tile_length": 30,
     "tile_width": 30,
-    "tile_coating": "Полированное",
-    "tile_package_quantity": 20
+    "coating_type": "polished",
+    "tiles_per_pack": 20
   }
 },
 {
@@ -192,15 +196,16 @@
     "image": "",
     "product_type": "product",
     "is_popular": false,
+    "is_active": true,
     "created_at": "2024-01-01T00:00:00Z",
     "monument_length": null,
     "monument_width": null,
     "monument_thickness": null,
-    "monument_material": "",
+    "material": null,
     "tile_length": null,
     "tile_width": null,
-    "tile_coating": "",
-    "tile_package_quantity": null
+    "coating_type": null,
+    "tiles_per_pack": null
   }
 },
 {
@@ -214,15 +219,16 @@
     "image": "",
     "product_type": "service",
     "is_popular": true,
+    "is_active": true,
     "created_at": "2024-01-01T00:00:00Z",
     "monument_length": null,
     "monument_width": null,
     "monument_thickness": null,
-    "monument_material": "",
+    "material": null,
     "tile_length": null,
     "tile_width": null,
-    "tile_coating": "",
-    "tile_package_quantity": null
+    "coating_type": null,
+    "tiles_per_pack": null
   }
 },
 {
@@ -236,15 +242,16 @@
     "image": "",
     "product_type": "product",
     "is_popular": false,
+    "is_active": true,
     "created_at": "2024-01-01T00:00:00Z",
     "monument_length": null,
     "monument_width": null,
     "monument_thickness": null,
-    "monument_material": "",
+    "material": null,
     "tile_length": null,
     "tile_width": null,
-    "tile_coating": "",
-    "tile_package_quantity": null
+    "coating_type": null,
+    "tiles_per_pack": null
   }
 },
 {

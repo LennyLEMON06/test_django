@@ -24,7 +24,7 @@
         <p>{{ product.description|linebreaks }}</p>
         
         <!-- Характеристики для памятников -->
-        {% if product.monument_length or product.monument_width or product.monument_thickness or product.monument_material %}
+        {% if product.monument_length or product.monument_width or product.monument_thickness or product.material %}
         <div class="card mb-3">
             <div class="card-header">
                 <strong>Характеристики памятника</strong>
@@ -39,15 +39,15 @@
                 {% if product.monument_thickness %}
                 <li class="list-group-item"><strong>Толщина:</strong> {{ product.monument_thickness }} см</li>
                 {% endif %}
-                {% if product.monument_material %}
-                <li class="list-group-item"><strong>Материал:</strong> {{ product.monument_material }}</li>
+                {% if product.material %}
+                <li class="list-group-item"><strong>Материал:</strong> {{ product.get_material_display }}</li>
                 {% endif %}
             </ul>
         </div>
         {% endif %}
         
         <!-- Характеристики для плитки -->
-        {% if product.tile_length or product.tile_width or product.tile_coating or product.tile_package_quantity %}
+        {% if product.tile_length or product.tile_width or product.coating_type or product.tiles_per_pack %}
         <div class="card mb-3">
             <div class="card-header">
                 <strong>Характеристики плитки</strong>
@@ -59,11 +59,11 @@
                 {% if product.tile_width %}
                 <li class="list-group-item"><strong>Ширина плитки:</strong> {{ product.tile_width }} см</li>
                 {% endif %}
-                {% if product.tile_coating %}
-                <li class="list-group-item"><strong>Тип покрытия:</strong> {{ product.tile_coating }}</li>
+                {% if product.coating_type %}
+                <li class="list-group-item"><strong>Тип покрытия:</strong> {{ product.get_coating_type_display }}</li>
                 {% endif %}
-                {% if product.tile_package_quantity %}
-                <li class="list-group-item"><strong>В упаковке:</strong> {{ product.tile_package_quantity }} шт</li>
+                {% if product.tiles_per_pack %}
+                <li class="list-group-item"><strong>В упаковке:</strong> {{ product.tiles_per_pack }} шт</li>
                 {% endif %}
             </ul>
         </div>
