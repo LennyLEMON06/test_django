@@ -39,10 +39,10 @@ class OrderItem(models.Model):
     """Элемент заказа"""
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey('goods.Product', on_delete=models.SET_NULL, null=True, related_name='order_items')
-    product_name = models.CharField("Название товара", max_length=200)  # Копия названия на момент заказа
+    product_name = models.CharField("Название товара", max_length=200, default='', blank=True)  # Копия названия на момент заказа
     quantity = models.PositiveIntegerField("Количество", default=1)
-    price = models.DecimalField("Цена", max_digits=10, decimal_places=2)
-    total_price = models.DecimalField("Сумма", max_digits=10, decimal_places=2)
+    price = models.DecimalField("Цена", max_digits=10, decimal_places=2, default=0)
+    total_price = models.DecimalField("Сумма", max_digits=10, decimal_places=2, default=0)
 
     class Meta:
         verbose_name = "Элемент заказа"

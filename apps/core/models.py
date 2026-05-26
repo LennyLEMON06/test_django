@@ -19,9 +19,9 @@ class ContactInfo(models.Model):
 class Slider(models.Model):
     """Слайдер для главной страницы"""
     title = models.CharField("Заголовок", max_length=100)
-    subtitle = models.CharField("Подзаголовок", max_length=255, blank=True)
+    subtitle = models.CharField("Подзаголовок", max_length=255, blank=True, default='')
     image = models.ImageField("Изображение", upload_to='slider/')
-    link = models.URLField("Ссылка", blank=True)
+    link = models.URLField("Ссылка", blank=True, default='')
     order = models.PositiveIntegerField("Порядок", default=0)
     is_active = models.BooleanField("Активен", default=True)
 
