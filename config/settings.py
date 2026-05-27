@@ -147,7 +147,7 @@ AUTH_USER_MODEL = 'auth.User'
 # Login/Logout redirect URLs
 LOGIN_REDIRECT_URL = '/users/profile/'
 LOGOUT_REDIRECT_URL = '/'
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = 'auth:login'
 
 # Jazzmin configuration (бежево-коричневая тема)
 JAZZMIN_SETTINGS = {
