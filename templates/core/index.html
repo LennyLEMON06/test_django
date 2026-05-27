@@ -8,13 +8,13 @@
         {% for slide in slides %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                 {% if slide.image %}
-                    <img src="{{ slide.image.url }}" class="d-block w-100" alt="{{ slide.title }}" style="max-height: 400px; object-fit: cover;">
+                    <img src="{{ slide.image.url }}" class="d-block w-100" alt="{{ slide.title }}" style="max-height: 500px; object-fit: cover;">
                 {% else %}
-                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 400px;">
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 500px;">
                         <h1>{{ slide.title }}</h1>
                     </div>
                 {% endif %}
-                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
                     <h2>{{ slide.title }}</h2>
                     {% if slide.subtitle %}<p>{{ slide.subtitle }}</p>{% endif %}
                 </div>
@@ -33,22 +33,22 @@
 <!-- Популярные товары -->
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Популярные товары</h2>
+        <h2 class="section-title">Популярные товары</h2>
         <div class="row">
             {% for product in popular_products %}
-                <div class="col-md-4 col-lg-2 mb-4">
+                <div class="col-md-4 col-lg-3 mb-4">
                     <div class="card product-card h-100">
                         {% if product.image %}
-                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 150px; object-fit: cover;">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
                         {% else %}
-                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 150px;">
+                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
                                 <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
                             </div>
                         {% endif %}
                         <div class="card-body">
                             <h6 class="card-title">{{ product.name }}</h6>
-                            <p class="card-text fw-bold">{{ product.price }} ₽</p>
-                            <a href="{% url 'goods:product_detail' product.pk %}" class="btn btn-outline-dark btn-sm w-100">Подробнее</a>
+                            <p class="card-text fw-bold" style="color: var(--soft-gold);">{{ product.price }} ₽</p>
+                            <a href="{% url 'goods:product_detail' product.pk %}" class="btn btn-outline-gold btn-sm w-100">Подробнее</a>
                         </div>
                     </div>
                 </div>
@@ -56,20 +56,20 @@
                 <p class="text-center">Популярные товары пока не добавлены</p>
             {% endfor %}
         </div>
-        <div class="text-center mt-3">
-            <a href="{% url 'goods:catalog' %}" class="btn btn-primary">Смотреть весь каталог</a>
+        <div class="text-center mt-4">
+            <a href="{% url 'goods:catalog' %}" class="btn btn-gold">Смотреть весь каталог</a>
         </div>
     </div>
 </section>
 
 <!-- Последние новости -->
-<section class="py-5 bg-light">
+<section class="py-5" style="background: var(--warm-sand);">
     <div class="container">
-        <h2 class="text-center mb-4">Последние новости</h2>
+        <h2 class="section-title">Последние новости</h2>
         <div class="row">
             {% for news_item in latest_news %}
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                    <div class="card product-card h-100">
                         {% if news_item.image %}
                             <img src="{{ news_item.image.url }}" class="card-img-top" alt="{{ news_item.title }}" style="height: 200px; object-fit: cover;">
                         {% else %}
@@ -82,8 +82,8 @@
                             <p class="card-text">{{ news_item.get_short_text }}</p>
                             <small class="text-muted">{{ news_item.created_at|date:"d.m.Y" }}</small>
                         </div>
-                        <div class="card-footer bg-white">
-                            <a href="{% url 'news:news_detail' news_item.pk %}" class="btn btn-outline-primary btn-sm">Читать далее</a>
+                        <div class="card-footer bg-white border-0">
+                            <a href="{% url 'news:news_detail' news_item.pk %}" class="btn btn-outline-gold btn-sm w-100">Читать далее</a>
                         </div>
                     </div>
                 </div>

@@ -4,48 +4,48 @@
 
 {% block content %}
 <div class="container py-5">
-    <h1 class="mb-4">Контакты</h1>
+    <h1 class="section-title">Контакты</h1>
     
     <div class="row">
-        <div class="col-md-6">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h3>Наш магазин</h3>
+        <div class="col-md-6 mb-4">
+            <div class="card elegant-card h-100">
+                <div class="card-body p-4">
+                    <h3 class="mb-4">Наш магазин</h3>
                     {% if contact %}
-                        <p><i class="bi bi-telephone"></i> <strong>Телефон:</strong> {{ contact.phone }}</p>
-                        <p><i class="bi bi-envelope"></i> <strong>Email:</strong> {{ contact.email }}</p>
-                        <p><i class="bi bi-geo-alt"></i> <strong>Адрес:</strong> {{ contact.address }}</p>
+                        <p class="mb-3"><i class="bi bi-telephone me-2" style="color: var(--soft-gold);"></i> <strong>Телефон:</strong> {{ contact.phone }}</p>
+                        <p class="mb-3"><i class="bi bi-envelope me-2" style="color: var(--soft-gold);"></i> <strong>Email:</strong> {{ contact.email }}</p>
+                        <p class="mb-3"><i class="bi bi-geo-alt me-2" style="color: var(--soft-gold);"></i> <strong>Адрес:</strong> {{ contact.address }}</p>
                         {% if contact.working_hours %}
-                            <p><i class="bi bi-clock"></i> <strong>Режим работы:</strong> {{ contact.working_hours }}</p>
+                            <p class="mb-3"><i class="bi bi-clock me-2" style="color: var(--soft-gold);"></i> <strong>Режим работы:</strong> {{ contact.working_hours }}</p>
                         {% endif %}
                     {% else %}
-                        <p><i class="bi bi-telephone"></i> <strong>Телефон:</strong> +7 (XXX) XXX-XX-XX</p>
-                        <p><i class="bi bi-envelope"></i> <strong>Email:</strong> info@pamyat.ru</p>
-                        <p><i class="bi bi-geo-alt"></i> <strong>Адрес:</strong> г. Москва, ул. Примерная, д. 1</p>
-                        <p><i class="bi bi-clock"></i> <strong>Режим работы:</strong> Пн-Пт: 9:00-18:00</p>
+                        <p class="mb-3"><i class="bi bi-telephone me-2" style="color: var(--soft-gold);"></i> <strong>Телефон:</strong> +7 (495) 123-45-67</p>
+                        <p class="mb-3"><i class="bi bi-envelope me-2" style="color: var(--soft-gold);"></i> <strong>Email:</strong> info@pamyat.ru</p>
+                        <p class="mb-3"><i class="bi bi-geo-alt me-2" style="color: var(--soft-gold);"></i> <strong>Адрес:</strong> г. Москва, ул. Памятная, д. 1</p>
+                        <p class="mb-3"><i class="bi bi-clock me-2" style="color: var(--soft-gold);"></i> <strong>Режим работы:</strong> Круглосуточно, без выходных</p>
                     {% endif %}
                 </div>
             </div>
         </div>
         
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h3>Напишите нам</h3>
+        <div class="col-md-6 mb-4">
+            <div class="card elegant-card h-100">
+                <div class="card-body p-4">
+                    <h3 class="mb-4">Напишите нам</h3>
                     <form>
                         <div class="mb-3">
                             <label class="form-label">Ваше имя</label>
-                            <input type="text" class="form-control" placeholder="Иван">
+                            <input type="text" class="form-control elegant-input" placeholder="Иван">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" placeholder="email@example.com">
+                            <input type="email" class="form-control elegant-input" placeholder="email@example.com">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Сообщение</label>
-                            <textarea class="form-control" rows="4"></textarea>
+                            <textarea class="form-control elegant-input" rows="4"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Отправить</button>
+                        <button type="submit" class="btn btn-gold w-100">Отправить</button>
                     </form>
                 </div>
             </div>
