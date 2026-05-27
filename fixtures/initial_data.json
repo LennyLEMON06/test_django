@@ -1,0 +1,445 @@
+[
+{
+  "model": "auth.group",
+  "pk": 1,
+  "fields": {
+    "name": "Managers",
+    "permissions": [
+      ["view_product", "goods", "product"],
+      ["add_product", "goods", "product"],
+      ["change_product", "goods", "product"],
+      ["delete_product", "goods", "product"],
+      ["view_category", "goods", "category"],
+      ["add_category", "goods", "category"],
+      ["change_category", "goods", "category"],
+      ["delete_category", "goods", "category"],
+      ["view_news", "news", "news"],
+      ["add_news", "news", "news"],
+      ["change_news", "news", "news"],
+      ["delete_news", "news", "news"],
+      ["view_order", "orders", "order"],
+      ["change_order", "orders", "order"],
+      ["view_orderitem", "orders", "orderitem"],
+      ["view_contactrequest", "core", "contactrequest"],
+      ["change_contactrequest", "core", "contactrequest"]
+    ]
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$admin_salt$hashed_password_here=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@pamyat.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-01T00:00:00Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$manager_salt$hashed_password_here=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "manager",
+    "first_name": "Менеджер",
+    "last_name": "Магазина",
+    "email": "manager@pamyat.ru",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2024-01-01T00:00:00Z",
+    "groups": [1],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$customer_salt$hashed_password_here=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "customer",
+    "first_name": "Покупатель",
+    "last_name": "Тестовый",
+    "email": "customer@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2024-01-01T00:00:00Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "goods.category",
+  "pk": 1,
+  "fields": {
+    "name": "Памятники",
+    "slug": "pamyatniki"
+  }
+},
+{
+  "model": "goods.category",
+  "pk": 2,
+  "fields": {
+    "name": "Плитка",
+    "slug": "plitka"
+  }
+},
+{
+  "model": "goods.category",
+  "pk": 3,
+  "fields": {
+    "name": "Цветы",
+    "slug": "cvety"
+  }
+},
+{
+  "model": "goods.category",
+  "pk": 4,
+  "fields": {
+    "name": "Установка памятников",
+    "slug": "ustanovka-pamyatnikov"
+  }
+},
+{
+  "model": "goods.category",
+  "pk": 5,
+  "fields": {
+    "name": "Оградки",
+    "slug": "ogradki"
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 1,
+  "fields": {
+    "name": "Памятник гранитный «Классический»",
+    "slug": "pamyatnik-granitny-klassicheskiy",
+    "description": "Классический гранитный памятник из черного гранита. Подходит для установки на могилу. В комплект входит стела, подставка и цветник.",
+    "price": "45000.00",
+    "image": "",
+    "category": 1,
+    "product_type": "product",
+    "is_popular": true,
+    "length_p": "100.0",
+    "width_p": "50.0",
+    "thickness_p": "8.0",
+    "material": "granite",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "fence_pattern_height": null,
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 2,
+  "fields": {
+    "name": "Памятник мраморный «Вечность»",
+    "slug": "pamyatnik-mramornyy-vechnost",
+    "description": "Элегантный памятник из белого мрамора с резными элементами. Индивидуальный дизайн и гравировка.",
+    "price": "75000.00",
+    "image": "",
+    "category": 1,
+    "product_type": "product",
+    "is_popular": true,
+    "length_p": "120.0",
+    "width_p": "60.0",
+    "thickness_p": "10.0",
+    "material": "marble",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "fence_pattern_height": null,
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 3,
+  "fields": {
+    "name": "Плитка тротуарная «Старый город»",
+    "slug": "plitka-trotuarnaya-staryy-gorod",
+    "description": "Тротуарная плитка для благоустройства территории вокруг захоронения. Устойчива к погодным условиям.",
+    "price": "850.00",
+    "image": "",
+    "category": 2,
+    "product_type": "product",
+    "is_popular": false,
+    "length_p": null,
+    "width_p": null,
+    "thickness_p": null,
+    "material": "",
+    "tile_length": "20.0",
+    "tile_width": "10.0",
+    "tile_thickness": "6.0",
+    "coating_type": "natural",
+    "quantity_per_pack": 50,
+    "fence_pattern_height": null,
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 4,
+  "fields": {
+    "name": "Плитка гранитная полированная",
+    "slug": "plitka-granitnaya-polirovannaya",
+    "description": "Гранитная плитка с полированной поверхностью для отделки памятников и захоронений.",
+    "price": "3200.00",
+    "image": "",
+    "category": 2,
+    "product_type": "product",
+    "is_popular": true,
+    "length_p": null,
+    "width_p": null,
+    "thickness_p": null,
+    "material": "",
+    "tile_length": "30.0",
+    "tile_width": "30.0",
+    "tile_thickness": "2.0",
+    "coating_type": "polished",
+    "quantity_per_pack": 10,
+    "fence_pattern_height": null,
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 5,
+  "fields": {
+    "name": "Установка памятника",
+    "slug": "ustanovka-pamyatnika",
+    "description": "Профессиональная установка памятника любой сложности. Включает подготовку фундамента, установку стелы и цветника.",
+    "price": "15000.00",
+    "image": "",
+    "category": 4,
+    "product_type": "service",
+    "is_popular": true,
+    "length_p": null,
+    "width_p": null,
+    "thickness_p": null,
+    "material": "",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "fence_pattern_height": null,
+    "service_duration": 3,
+    "service_notes": "Срок выполнения зависит от сложности и погодных условий"
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 6,
+  "fields": {
+    "name": "Букет ритуальный «Светлая память»",
+    "slug": "buket-ritualny-svetlaya-pamyat",
+    "description": "Ритуальный букет из искусственных цветов премиум-класса. Долговечный и устойчивый к погодным условиям.",
+    "price": "2500.00",
+    "image": "",
+    "category": 3,
+    "product_type": "product",
+    "is_popular": false,
+    "length_p": null,
+    "width_p": null,
+    "thickness_p": null,
+    "material": "",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "fence_pattern_height": null,
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 7,
+  "fields": {
+    "name": "Оградка металлическая «Ажурная»",
+    "slug": "ogradka-metallicheskaya-azhurnaya",
+    "description": "Красивая металлическая оградка с ажурным рисунком. Высота рисунка 40 см. Доступна в различных размерах.",
+    "price": "8500.00",
+    "image": "",
+    "category": 5,
+    "product_type": "product",
+    "is_popular": true,
+    "length_p": null,
+    "width_p": null,
+    "thickness_p": null,
+    "material": "other",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "fence_pattern_height": "40.0",
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 1,
+  "fields": {
+    "title": "Открытие нового сезона",
+    "content": "Уважаемые клиенты! Мы рады сообщить об открытии нового сезона. В нашем ассортименте появились новые модели памятников из гранита и мрамора. Приглашаем вас посетить наш магазин и ознакомиться с новинками. Наши консультанты помогут вам выбрать подходящий вариант и ответят на все вопросы.",
+    "created_at": "2024-03-01T10:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 2,
+  "fields": {
+    "title": "Скидки на установку памятников",
+    "content": "До конца месяца действует скидка 10% на услуги по установке памятников. Воспользуйтесь выгодным предложением и доверьте установку профессионалам. Мы гарантируем качество работ и соблюдение всех сроков.",
+    "created_at": "2024-03-15T14:30:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 3,
+  "fields": {
+    "title": "Новая коллекция оградок",
+    "content": "В продаже появилась новая коллекция металлических оградок для захоронений. Различные дизайны и размеры. Возможна индивидуальная покраска в любой цвет. Звоните и заказывайте!",
+    "created_at": "2024-04-01T09:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 4,
+  "fields": {
+    "title": "Благоустройство территорий",
+    "content": "Наша компания предлагает полный комплекс услуг по благоустройству территорий захоронений. Укладка плитки, установка оградок, озеленение. Работаем качественно и в срок.",
+    "created_at": "2024-04-10T11:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 5,
+  "fields": {
+    "title": "Гранитные памятники премиум-класса",
+    "content": "Представляем новую коллекцию гранитных памятников премиум-класса. Изготовление по индивидуальным эскизам, художественная гравировка, покрытие защитным составом. Срок изготовления от 14 дней.",
+    "created_at": "2024-04-20T15:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 6,
+  "fields": {
+    "title": "День памяти усопших",
+    "content": "В связи с предстоящим днем памяти усопших мы продлили режим работы магазина. Теперь мы работаем ежедневно с 9:00 до 20:00 без выходных. Ждем вас за покупками.",
+    "created_at": "2024-05-01T08:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 7,
+  "fields": {
+    "title": "Новые венки и корзины",
+    "content": "В нашем магазине появился большой выбор ритуальных венков и корзин от ведущих производителей. Натуральные и искусственные цветы, ленты с надписями, доставка по городу.",
+    "created_at": "2024-05-10T12:30:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 8,
+  "fields": {
+    "title": "Изготовление табличек и крестов",
+    "content": "Заказывайте металлические и гранитные таблички, кресты на могилу. Гравировка имен, дат, эпитафий. Различные размеры и формы. Срок изготовления от 3 дней.",
+    "created_at": "2024-05-15T10:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 9,
+  "fields": {
+    "title": "Летний график работы",
+    "content": "С 1 июня магазин переходит на летний график работы: Пн-Пт 9:00-19:00, Сб-Вс 10:00-17:00. Консультации и выезд замерщика по предварительной записи.",
+    "created_at": "2024-05-25T16:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 10,
+  "fields": {
+    "title": "Акция на комплексное благоустройство",
+    "content": "При заказе комплексного благоустройства захоронения (плитка + оградка + установка) скидка 15% на все работы. Предложение действует до конца лета. Успейте воспользоваться!",
+    "created_at": "2024-06-01T09:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "core.contactinfo",
+  "pk": 1,
+  "fields": {
+    "phone": "+7 (495) 123-45-67",
+    "email": "info@pamyat.ru",
+    "address": "г. Москва, ул. Примерная, д. 10",
+    "work_hours": "Пн-Пт: 9:00 - 18:00, Сб: 10:00 - 16:00, Вс: выходной",
+    "is_active": true
+  }
+},
+{
+  "model": "core.slider",
+  "pk": 1,
+  "fields": {
+    "title": "Памятники из гранита",
+    "image": "",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "core.slider",
+  "pk": 2,
+  "fields": {
+    "title": "Благоустройство захоронений",
+    "image": "",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "core.slider",
+  "pk": 3,
+  "fields": {
+    "title": "Индивидуальный подход",
+    "image": "",
+    "order": 3,
+    "is_active": true
+  }
+}
+]

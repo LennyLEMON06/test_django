@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% block title %}Каталог - Интернет-магазин «Память»{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Каталог товаров и услуг</h1>
+
+<div class="row">
+    <!-- Боковая панель фильтрации -->
+    <aside class="col-lg-3 mb-4">
+        <div class="card shadow-memory border-0">
+            <div class="card-header" style="background-color: #5C4033; color: white;">
+                <i class="bi bi-funnel"></i> Фильтры
+            </div>
+            <div class="card-body">
+                <form method="get" action="{% url 'goods:catalog' %}">
+                    <!-- Категории -->
+                    <div class="mb-3">
+                        <h6 class="fw-bold mb-2" style="color: #5C4033;">Категории</h6>
+                        {% for category in categories %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="category" 
+                                   value="{{ category.slug }}" id="cat{{ category.id }}"
+                                   {% if category.slug in selected_categories %}checked{% endif %}>
+                            <label class="form-check-label" for="cat{{ category.id }}">
+                                {{ category.name }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- Только популярные -->
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="popular" 
+                                   value="1" id="popularOnly"
+                                   {% if show_popular %}checked{% endif %}>
+                            <label class="form-check-label" for="popularOnly">
+                                Только популярные
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-memory w-100">
+                        <i class="bi bi-search"></i> Применить
+                    </button>
+                    <a href="{% url 'goods:catalog' %}" class="btn btn-memory-outline w-100 mt-2">
+                        <i class="bi bi-x-circle"></i> Сбросить
+                    </a>
+                </form>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Основная область с товарами -->
+    <main class="col-lg-9">
+        {% if products %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            {% for product in products %}
+            <div class="col">
+                <div class="product-card">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <div class="bg-beige d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="bi bi-image display-4 text-muted-memory"></i>
+                        </div>
+                    {% endif %}
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">
+                            <a href="{% url 'goods:product_detail' product.slug %}">{{ product.name }}</a>
+                        </h3>
+                        <p class="product-card-description">
+                            {{ product.description|truncatechars:80 }}
+                        </p>
+                        <p class="product-card-price">{{ product.price }} ₽</p>
+                        
+                        <!-- Иконки-подсказки для памятников и плитки -->
+                        {% if product.product_type == 'product' and product.category.slug in 'pamyatniki,plitka' %}
+                        <div class="mb-2">
+                            {% if product.length_p or product.width_p or product.thickness_p %}
+                            <span class="badge" style="background-color: #8B7355;" title="Размеры доступны">
+                                <i class="bi bi-rulers"></i> Размеры
+                            </span>
+                            {% endif %}
+                            {% if product.material %}
+                            <span class="badge" style="background-color: #D4C4A8; color: #5C4033;" title="Материал указан">
+                                <i class="bi bi-gem"></i> {{ product.get_material_display }}
+                            </span>
+                            {% endif %}
+                            {% if product.tile_length or product.tile_width %}
+                            <span class="badge" style="background-color: #8B7355;" title="Размеры плитки доступны">
+                                <i class="bi bi-grid"></i> Плитка
+                            </span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="product-card-actions">
+                            <a href="{% url 'goods:product_detail' product.slug %}" class="btn btn-memory-outline flex-fill">Подробнее</a>
+                            <form action="{% url 'cart:cart_add' product.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-memory flex-fill">
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Пагинация -->
+        {% if page_obj.has_other_pages %}
+        <nav aria-label="Пагинация каталога" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if selected_categories %}{% for cat in selected_categories %}&category={{ cat }}{% endfor %}{% endif %}{% if show_popular %}&popular=1{% endif %}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-left"></i></span>
+                </li>
+                {% endif %}
+                
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}{% if selected_categories %}{% for cat in selected_categories %}&category={{ cat }}{% endfor %}{% endif %}{% if show_popular %}&popular=1{% endif %}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if selected_categories %}{% for cat in selected_categories %}&category={{ cat }}{% endfor %}{% endif %}{% if show_popular %}&popular=1{% endif %}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link"><i class="bi bi-chevron-right"></i></span>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+        
+        {% else %}
+        <div class="no-data-message">
+            <i class="bi bi-box display-4 mb-3"></i>
+            <p>Товары не найдены.</p>
+            <a href="{% url 'goods:catalog' %}" class="btn btn-memory mt-3">Сбросить фильтры</a>
+        </div>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}
