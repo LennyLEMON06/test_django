@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib import messages
 from .models import Cart, CartItem
-from goods.models import Product
+from apps.goods.models import Product
 
 
 def get_or_create_cart(request):
