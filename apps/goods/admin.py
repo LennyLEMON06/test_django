@@ -28,6 +28,10 @@ class ProductAdmin(admin.ModelAdmin):
             'fields': ('tile_length', 'tile_width', 'tile_thickness', 'coating_type', 'quantity_per_pack'),
             'classes': ('collapse',)
         }),
+        ('Характеристики оградки', {
+            'fields': ('fence_pattern_height',),
+            'classes': ('collapse',)
+        }),
         ('Информация об услуге', {
             'fields': ('service_duration', 'service_notes'),
             'classes': ('collapse',)

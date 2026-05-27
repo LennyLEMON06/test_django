@@ -1,0 +1,167 @@
+/* 
+ * Кастомные стили для админ-панели Jazzmin
+ * Цветовая схема: бежево-коричневая гамма (в тон основному сайту)
+ */
+
+/* Основные цвета */
+:root {
+    --admin-color-primary: #8B7355;
+    --admin-color-secondary: #D4C4A8;
+    --admin-color-dark: #5C4033;
+    --admin-color-bg: #F5F0E8;
+    --admin-color-light: #FAF7F2;
+}
+
+/* Навбар (верхняя панель) */
+.navbar-dark {
+    background-color: var(--admin-color-dark) !important;
+}
+
+/* Сайдбар (боковая панель) */
+.main-sidebar {
+    background-color: var(--admin-color-primary) !important;
+}
+
+.main-sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.main-sidebar .nav-link:hover {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.main-sidebar .nav-link.active {
+    background-color: var(--admin-color-dark) !important;
+    color: #fff !important;
+}
+
+/* Заголовки в админке */
+.content-header h1 {
+    color: var(--admin-color-dark);
+}
+
+/* Карточки */
+.card {
+    border-top: 3px solid var(--admin-color-primary);
+}
+
+.card-header {
+    background-color: var(--admin-color-bg) !important;
+    color: var(--admin-color-dark);
+    border-bottom: 1px solid var(--admin-color-secondary);
+}
+
+/* Кнопки */
+.btn-primary {
+    background-color: var(--admin-color-primary) !important;
+    border-color: var(--admin-color-primary) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--admin-color-dark) !important;
+    border-color: var(--admin-color-dark) !important;
+}
+
+/* Таблицы */
+.table thead th {
+    background-color: var(--admin-color-dark) !important;
+    color: #fff !important;
+    border-color: var(--admin-color-dark) !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(139, 115, 85, 0.05);
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--admin-color-bg) !important;
+}
+
+/* Формы */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--admin-color-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(139, 115, 85, 0.25) !important;
+}
+
+/* Ссылки */
+a {
+    color: var(--admin-color-dark);
+}
+
+a:hover {
+    color: var(--admin-color-primary);
+}
+
+/* Брендинг */
+.brand-link {
+    background-color: var(--admin-color-dark) !important;
+}
+
+.brand-link:hover {
+    color: var(--admin-color-secondary) !important;
+}
+
+/* Footer */
+.main-footer {
+    border-top: 1px solid var(--admin-color-secondary);
+    color: var(--admin-color-dark);
+}
+
+/* Сообщения */
+.alert-success {
+    background-color: #d4edda !important;
+    border-color: #c3e6cb !important;
+    color: #155724 !important;
+}
+
+.alert-info {
+    background-color: var(--admin-color-bg) !important;
+    border-color: var(--admin-color-secondary) !important;
+    color: var(--admin-color-dark) !important;
+}
+
+/* Пагинация */
+.pagination .page-item.active .page-link {
+    background-color: var(--admin-color-primary) !important;
+    border-color: var(--admin-color-primary) !important;
+}
+
+.pagination .page-link {
+    color: var(--admin-color-dark) !important;
+}
+
+/* Модальные окна */
+.modal-content {
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    background-color: var(--admin-color-bg) !important;
+    border-bottom: 1px solid var(--admin-color-secondary);
+}
+
+.modal-title {
+    color: var(--admin-color-dark);
+}
+
+/* Выбранные элементы в таблицах */
+tr.selected {
+    background-color: var(--admin-color-bg) !important;
+}
+
+/* Бейджи */
+.badge {
+    font-weight: 500;
+}
+
+/* Пользовательское меню */
+.user-menu > .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.user-menu > .nav-link:hover {
+    color: #fff !important;
+}

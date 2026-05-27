@@ -19,7 +19,9 @@
       ["delete_news", "news", "news"],
       ["view_order", "orders", "order"],
       ["change_order", "orders", "order"],
-      ["view_orderitem", "orders", "orderitem"]
+      ["view_orderitem", "orders", "orderitem"],
+      ["view_contactrequest", "core", "contactrequest"],
+      ["change_contactrequest", "core", "contactrequest"]
     ]
   }
 },
@@ -138,6 +140,7 @@
     "tile_thickness": null,
     "coating_type": "",
     "quantity_per_pack": null,
+    "fence_pattern_height": null,
     "service_duration": null,
     "service_notes": ""
   }
@@ -163,6 +166,7 @@
     "tile_thickness": null,
     "coating_type": "",
     "quantity_per_pack": null,
+    "fence_pattern_height": null,
     "service_duration": null,
     "service_notes": ""
   }
@@ -188,6 +192,7 @@
     "tile_thickness": "6.0",
     "coating_type": "natural",
     "quantity_per_pack": 50,
+    "fence_pattern_height": null,
     "service_duration": null,
     "service_notes": ""
   }
@@ -213,6 +218,7 @@
     "tile_thickness": "2.0",
     "coating_type": "polished",
     "quantity_per_pack": 10,
+    "fence_pattern_height": null,
     "service_duration": null,
     "service_notes": ""
   }
@@ -238,6 +244,7 @@
     "tile_thickness": null,
     "coating_type": "",
     "quantity_per_pack": null,
+    "fence_pattern_height": null,
     "service_duration": 3,
     "service_notes": "Срок выполнения зависит от сложности и погодных условий"
   }
@@ -263,6 +270,33 @@
     "tile_thickness": null,
     "coating_type": "",
     "quantity_per_pack": null,
+    "fence_pattern_height": null,
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 7,
+  "fields": {
+    "name": "Оградка металлическая «Ажурная»",
+    "slug": "ogradka-metallicheskaya-azhurnaya",
+    "description": "Красивая металлическая оградка с ажурным рисунком. Высота рисунка 40 см. Доступна в различных размерах.",
+    "price": "8500.00",
+    "image": "",
+    "category": 5,
+    "product_type": "product",
+    "is_popular": true,
+    "length_p": null,
+    "width_p": null,
+    "thickness_p": null,
+    "material": "other",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "fence_pattern_height": "40.0",
     "service_duration": null,
     "service_notes": ""
   }
@@ -294,6 +328,76 @@
     "title": "Новая коллекция оградок",
     "content": "В продаже появилась новая коллекция металлических оградок для захоронений. Различные дизайны и размеры. Возможна индивидуальная покраска в любой цвет. Звоните и заказывайте!",
     "created_at": "2024-04-01T09:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 4,
+  "fields": {
+    "title": "Благоустройство территорий",
+    "content": "Наша компания предлагает полный комплекс услуг по благоустройству территорий захоронений. Укладка плитки, установка оградок, озеленение. Работаем качественно и в срок.",
+    "created_at": "2024-04-10T11:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 5,
+  "fields": {
+    "title": "Гранитные памятники премиум-класса",
+    "content": "Представляем новую коллекцию гранитных памятников премиум-класса. Изготовление по индивидуальным эскизам, художественная гравировка, покрытие защитным составом. Срок изготовления от 14 дней.",
+    "created_at": "2024-04-20T15:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 6,
+  "fields": {
+    "title": "День памяти усопших",
+    "content": "В связи с предстоящим днем памяти усопших мы продлили режим работы магазина. Теперь мы работаем ежедневно с 9:00 до 20:00 без выходных. Ждем вас за покупками.",
+    "created_at": "2024-05-01T08:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 7,
+  "fields": {
+    "title": "Новые венки и корзины",
+    "content": "В нашем магазине появился большой выбор ритуальных венков и корзин от ведущих производителей. Натуральные и искусственные цветы, ленты с надписями, доставка по городу.",
+    "created_at": "2024-05-10T12:30:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 8,
+  "fields": {
+    "title": "Изготовление табличек и крестов",
+    "content": "Заказывайте металлические и гранитные таблички, кресты на могилу. Гравировка имен, дат, эпитафий. Различные размеры и формы. Срок изготовления от 3 дней.",
+    "created_at": "2024-05-15T10:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 9,
+  "fields": {
+    "title": "Летний график работы",
+    "content": "С 1 июня магазин переходит на летний график работы: Пн-Пт 9:00-19:00, Сб-Вс 10:00-17:00. Консультации и выезд замерщика по предварительной записи.",
+    "created_at": "2024-05-25T16:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 10,
+  "fields": {
+    "title": "Акция на комплексное благоустройство",
+    "content": "При заказе комплексного благоустройства захоронения (плитка + оградка + установка) скидка 15% на все работы. Предложение действует до конца лета. Успейте воспользоваться!",
+    "created_at": "2024-06-01T09:00:00Z",
     "image": ""
   }
 },

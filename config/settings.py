@@ -144,6 +144,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom user model
 AUTH_USER_MODEL = 'auth.User'
 
+# Login redirect URL (после входа перенаправлять на главную)
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = 'users:login'
+
 # Jazzmin configuration (бежево-коричневая тема)
 JAZZMIN_SETTINGS = {
     "site_title": "Память - Администрирование",
@@ -198,4 +203,5 @@ JAZZMIN_UI_TWEAKS = {
     "accent": "secondary",
     "adminlte_version": "3.2.0",
     "dark_mode_theme": None,
+    "custom_css": "css/admin_custom.css",
 }

@@ -67,6 +67,9 @@ class Product(models.Model):
     coating_type = models.CharField("Тип покрытия", max_length=30, choices=COATING_CHOICES, blank=True, default='')
     quantity_per_pack = models.PositiveIntegerField("Количество в упаковке (шт)", blank=True, null=True)
 
+    # Поля для оградки
+    fence_pattern_height = models.DecimalField("Высота рисунка (см)", max_digits=6, decimal_places=1, blank=True, null=True)
+
     # Поля для услуг
     service_duration = models.PositiveIntegerField("Срок выполнения (дни)", blank=True, null=True)
     service_notes = models.TextField("Особенности услуги", blank=True, default='')
