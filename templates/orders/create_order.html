@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Оформление заказа - Интернет-магазин «Память»{% endblock %}
+
+{% block content %}
+<div class="order-create-page">
+    <h1 class="page-title mb-4">Оформление заказа</h1>
+    
+    <div class="row">
+        <!-- Состав заказа -->
+        <div class="col-lg-6 mb-4">
+            <div class="order-summary-card">
+                <h5 class="mb-3">Ваш заказ:</h5>
+                <table class="table table-sm order-summary-table">
+                    <thead>
+                        <tr>
+                            <th>Товар</th>
+                            <th class="text-center">Кол-во</th>
+                            <th class="text-end">Цена</th>
+                            <th class="text-end">Сумма</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td class="text-center">{{ item.quantity }} шт.</td>
+                            <td class="text-end">{{ item.product.price|floatformat:0 }} ₽</td>
+                            <td class="text-end fw-bold">{{ item.get_subtotal|floatformat:0 }} ₽</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-end fw-bold">Итого:</td>
+                            <td class="text-end fw-bold fs-5">{{ total_price|floatformat:0 }} ₽</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-secondary btn-sm mt-2">
+                    <i class="bi bi-pencil"></i> Изменить корзину
+                </a>
+            </div>
+        </div>
+        
+        <!-- Форма оформления -->
+        <div class="col-lg-6">
+            <div class="order-form-card">
+                <h5 class="mb-3">Данные для доставки:</h5>
+                <form method="post" action="{% url 'orders:create_order' %}">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Телефон <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
+                        <small class="text-muted">Мы свяжемся с вами для подтверждения заказа</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Адрес доставки <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="address" name="address" rows="3" required placeholder="Город, улица, дом, квартира"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Комментарий к заказу</label>
+                        <textarea class="form-control" id="comment" name="comment" rows="2" placeholder="Пожелания к доставке, удобное время и т.д."></textarea>
+                    </div>
+                    
+                    <div class="alert alert-info mt-3">
+                        <i class="bi bi-info-circle"></i>
+                        <strong>Обратите внимание:</strong> Оплата производится при получении товара или после оказания услуги.
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
+                        <i class="bi bi-check-circle-fill"></i> Подтвердить заказ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
