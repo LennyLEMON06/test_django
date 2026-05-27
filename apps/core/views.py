@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from goods.models import Product
-from news.models import News
-from core.models import Slider, ContactInfo
+from apps.goods.models import Product
+from apps.news.models import News
+from apps.core.models import Slider, ContactInfo
 
 
 def index(request):
