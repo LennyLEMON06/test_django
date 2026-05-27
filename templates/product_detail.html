@@ -121,6 +121,38 @@
         </div>
     </div>
     
+    {% elif product.product_type == 'fence' %}
+    <!-- Характеристики оградки -->
+    <h4><i class="bi bi-shield-check"></i> Характеристики оградки</h4>
+    <div class="row">
+        <div class="col-md-6">
+            {% if product.fence_height_pattern %}
+            <div class="characteristic-row">
+                <span class="characteristic-label">Высота рисунка:</span>
+                <span class="characteristic-value">{{ product.fence_height_pattern }} см</span>
+            </div>
+            {% endif %}
+            {% if product.length_p %}
+            <div class="characteristic-row">
+                <span class="characteristic-label">Длина:</span>
+                <span class="characteristic-value">{{ product.length_p }} см</span>
+            </div>
+            {% endif %}
+            {% if product.width_p %}
+            <div class="characteristic-row">
+                <span class="characteristic-label">Ширина:</span>
+                <span class="characteristic-value">{{ product.width_p }} см</span>
+            </div>
+            {% endif %}
+            {% if product.material %}
+            <div class="characteristic-row">
+                <span class="characteristic-label">Материал:</span>
+                <span class="characteristic-value">{{ product.get_material_display }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
     {% elif product.product_type == 'service' %}
     <!-- Информация об услуге -->
     <h4><i class="bi bi-tools"></i> Информация об услуге</h4>

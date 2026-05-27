@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from apps.goods.models import Product
 from apps.news.models import News
-from apps.core.models import Slider, ContactInfo
+from apps.core.models import Slider, ContactInfo, ContactRequest
 
 
 def index(request):
@@ -26,6 +27,20 @@ def index(request):
 def contacts(request):
     """Страница контактов"""
     contact_info = ContactInfo.objects.filter(is_active=True).first()
+    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        
+        if name and email and message:
+            ContactRequest.objects.create(
+                name=name,
+                email=email,
+                message=message
+            )
+            messages.success(request, 'Спасибо, ваше сообщение получено. Мы свяжемся с вами в ближайшее время.')
+            return redirect('core:contacts')
     
     context = {
         'contact_info': contact_info,

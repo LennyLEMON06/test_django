@@ -31,3 +31,19 @@ class Slider(models.Model):
 
     def __str__(self):
         return self.title or f"Слайд #{self.id}"
+
+
+class ContactRequest(models.Model):
+    """Заявка с контактов"""
+    name = models.CharField("Имя", max_length=100)
+    email = models.EmailField("Email")
+    message = models.TextField("Сообщение")
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_processed = models.BooleanField("Обработано", default=False)
+
+    class Meta:
+        verbose_name = "Заявка с контактов"
+        verbose_name_plural = "Заявки с контактов"
+
+    def __str__(self):
+        return f"Заявка от {self.name} ({self.created_at.strftime('%d.%m.%Y')})"

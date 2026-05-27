@@ -26,6 +26,7 @@ class Product(models.Model):
     PRODUCT_TYPE_CHOICES = [
         ('product', 'Товар'),
         ('service', 'Услуга'),
+        ('fence', 'Оградка'),
     ]
 
     MATERIAL_CHOICES = [
@@ -66,6 +67,9 @@ class Product(models.Model):
     tile_thickness = models.DecimalField("Толщина (мм)", max_digits=4, decimal_places=1, blank=True, null=True)
     coating_type = models.CharField("Тип покрытия", max_length=30, choices=COATING_CHOICES, blank=True, default='')
     quantity_per_pack = models.PositiveIntegerField("Количество в упаковке (шт)", blank=True, null=True)
+
+    # Поля для оградок
+    fence_height_pattern = models.DecimalField("Высота рисунка (см)", max_digits=5, decimal_places=1, blank=True, null=True)
 
     # Поля для услуг
     service_duration = models.PositiveIntegerField("Срок выполнения (дни)", blank=True, null=True)

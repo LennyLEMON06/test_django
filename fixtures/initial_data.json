@@ -27,7 +27,7 @@
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$600000$admin_salt$hashed_password_here=",
+    "password": "pbkdf2_sha256$1200000$admin_salt$zqaMf4RII4lpd28eqVnPTW6REA62EdYWpnun/yQmqhI=",
     "last_login": null,
     "is_superuser": true,
     "username": "admin",
@@ -45,7 +45,7 @@
   "model": "auth.user",
   "pk": 2,
   "fields": {
-    "password": "pbkdf2_sha256$600000$manager_salt$hashed_password_here=",
+    "password": "pbkdf2_sha256$1200000$manager_salt$BiAeBDb6YP/waDNHooKClqZwNBqRaoeWA1734m0q1+w=",
     "last_login": null,
     "is_superuser": false,
     "username": "manager",
@@ -63,7 +63,7 @@
   "model": "auth.user",
   "pk": 3,
   "fields": {
-    "password": "pbkdf2_sha256$600000$customer_salt$hashed_password_here=",
+    "password": "pbkdf2_sha256$1200000$customer_salt$UZjM9vNhLLRaAYy+ejybQw4lbP6DBGgYEiRuGD1RzTU=",
     "last_login": null,
     "is_superuser": false,
     "username": "customer",
@@ -263,8 +263,161 @@
     "tile_thickness": null,
     "coating_type": "",
     "quantity_per_pack": null,
+    "fence_height_pattern": null,
     "service_duration": null,
     "service_notes": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 7,
+  "fields": {
+    "name": "Оградка металлическая «Классическая»",
+    "slug": "ogradka-metallicheskaya-klassicheskaya",
+    "description": "Металлическая оградка для захоронения с классическим рисунком. Высота рисунка 40 см. Покраска в черный цвет.",
+    "price": "8500.00",
+    "image": "",
+    "category": 5,
+    "product_type": "fence",
+    "is_popular": true,
+    "length_p": "200.0",
+    "width_p": "100.0",
+    "thickness_p": null,
+    "material": "other",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "fence_height_pattern": "40.0",
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 8,
+  "fields": {
+    "name": "Оградка кованая «Ажурная»",
+    "slug": "ogradka-kovanaya-azhurnaya",
+    "description": "Кованая оградка с ажурным рисунком. Высота рисунка 60 см. Индивидуальное изготовление.",
+    "price": "15000.00",
+    "image": "",
+    "category": 5,
+    "product_type": "fence",
+    "is_popular": false,
+    "length_p": "200.0",
+    "width_p": "100.0",
+    "thickness_p": null,
+    "material": "other",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "fence_height_pattern": "60.0",
+    "service_duration": null,
+    "service_notes": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 4,
+  "fields": {
+    "title": "График работы в праздничные дни",
+    "content": "Уважаемые клиенты! В майские праздники наш магазин работает по следующему графику: 1-3 мая - выходной, 4-7 мая - с 10:00 до 16:00. С 8 мая работаем в обычном режиме. Приносим извинения за возможные неудобства.",
+    "created_at": "2024-04-25T11:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 5,
+  "fields": {
+    "title": "Бесплатная консультация дизайнера",
+    "content": "Теперь в нашем магазине вы можете получить бесплатную консультацию профессионального дизайнера по вопросам благоустройства захоронений. Мы поможем подобрать оптимальное решение для вашего случая.",
+    "created_at": "2024-05-10T15:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 6,
+  "fields": {
+    "title": "Новое поступление гранита",
+    "content": "На склад поступила новая партия черного гранита высшего качества. Из этого материала можно изготовить памятник по индивидуальному эскизу. Срок изготовления от 14 дней.",
+    "created_at": "2024-06-01T09:30:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 7,
+  "fields": {
+    "title": "Акция на комплексное благоустройство",
+    "content": "Закажите комплексное благоустройство захоронения (памятник + оградка + плитка) и получите скидку 15% на все работы. Акция действует до конца лета!",
+    "created_at": "2024-06-15T12:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 8,
+  "fields": {
+    "title": "Изготовление памятников по фото",
+    "content": "Мы предлагаем услугу изготовления памятников по фотографии усопшего. Наши мастера создадут точную копию или художественный портрет любой сложности. Звоните для консультации.",
+    "created_at": "2024-07-01T10:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 9,
+  "fields": {
+    "title": "Уход за памятниками осенью",
+    "content": "Рекомендуем провести осенний уход за памятником: очистить от загрязнений, проверить устойчивость конструкции. Наши специалисты готовы помочь с обслуживанием. Стоимость от 2000 руб.",
+    "created_at": "2024-09-20T14:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 10,
+  "fields": {
+    "title": "Подарочные сертификаты",
+    "content": "В нашем магазине появились подарочные сертификаты на любую сумму. Отличный способ позаботиться о близких заранее. Сертификат действителен в течение 2 лет.",
+    "created_at": "2024-10-05T16:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 11,
+  "fields": {
+    "title": "Зимний режим работы",
+    "content": "С ноября магазин переходит на зимний режим работы: Пн-Пт 9:00-18:00, Сб 10:00-15:00. Установка памятников в зимний период возможна при температуре не ниже -10°C.",
+    "created_at": "2024-11-01T08:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 12,
+  "fields": {
+    "title": "Новогодние скидки",
+    "content": "В декабре действуют специальные цены на весь ассортимент цветов и венков. Успейте приобрести качественные товары по выгодным ценам. Скидки до 20%!",
+    "created_at": "2024-12-01T10:00:00Z",
+    "image": ""
+  }
+},
+{
+  "model": "news.news",
+  "pk": 13,
+  "fields": {
+    "title": "Расширение ассортимента плитки",
+    "content": "В продаже появилась новая коллекция тротуарной плитки различных цветов и фактур. Теперь вы можете выбрать идеальное решение для благоустройства территории захоронения.",
+    "created_at": "2025-01-15T11:30:00Z",
+    "image": ""
   }
 },
 {
