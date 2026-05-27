@@ -1,1 +1,8 @@
-Nothing needs to be added to the .gitignore file based on the provided file changes, as they only include Python source files (.py) which should not be ignored.
+```gitignore
+# Python compiled files
+*.pyc
+__pycache__/
+
+# Database
+db.sqlite3
+```

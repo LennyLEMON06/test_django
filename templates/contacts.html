@@ -5,6 +5,18 @@
 {% block content %}
 <h1 class="page-title">Контакты</h1>
 
+<!-- Сообщения Django -->
+{% if messages %}
+<div class="messages mb-4">
+    {% for message in messages %}
+    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <div class="row mb-5">
     {% if contact_info %}
     <!-- Карточки контактов -->
@@ -32,12 +44,8 @@
     
     <!-- Карта -->
     <div class="col-lg-6">
-        <div class="map-placeholder">
-            <div class="text-center">
-                <i class="bi bi-map display-1 mb-3"></i>
-                <h3>Схема проезда</h3>
-                <p class="text-muted mt-2">г. Москва, ул. Примерная, д. 10</p>
-            </div>
+        <div class="map-responsive">
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A0&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
         </div>
     </div>
     {% else %}
@@ -50,7 +58,7 @@
     {% endif %}
 </div>
 
-<!-- Форма обратной связи (опционально) -->
+<!-- Форма обратной связи -->
 <div class="row">
     <div class="col-lg-8 mx-auto">
         <div class="card shadow-memory border-0">
@@ -61,16 +69,16 @@
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="name" class="form-label">Ваше имя</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="{{ form.name.id_for_label }}" class="form-label">Ваше имя</label>
+                        {{ form.name }}
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                        {{ form.email }}
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label">Сообщение</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        <label for="{{ form.message.id_for_label }}" class="form-label">Сообщение</label>
+                        {{ form.message }}
                     </div>
                     <button type="submit" class="btn btn-memory btn-lg-memory">
                         <i class="bi bi-send"></i> Отправить
