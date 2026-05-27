@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Order, OrderItem
-from cart.models import Cart, CartItem
-from cart.views import get_or_create_cart
+from apps.cart.models import Cart, CartItem
+from apps.cart.views import get_or_create_cart
 
 
 def create_order(request):
