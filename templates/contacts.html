@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты - Интернет-магазин «Память»{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Контакты</h1>
+
+<div class="row mb-5">
+    {% if contact_info %}
+    <!-- Карточки контактов -->
+    <div class="col-lg-6 mb-4">
+        <div class="contact-card">
+            <h4><i class="bi bi-geo-alt-fill"></i> Адрес</h4>
+            <p class="mb-0">{{ contact_info.address }}</p>
+        </div>
+        
+        <div class="contact-card">
+            <h4><i class="bi bi-telephone-fill"></i> Телефон</h4>
+            <p class="mb-0"><a href="tel:{{ contact_info.phone }}">{{ contact_info.phone }}</a></p>
+        </div>
+        
+        <div class="contact-card">
+            <h4><i class="bi bi-envelope-fill"></i> Email</h4>
+            <p class="mb-0"><a href="mailto:{{ contact_info.email }}">{{ contact_info.email }}</a></p>
+        </div>
+        
+        <div class="contact-card">
+            <h4><i class="bi bi-clock-fill"></i> Режим работы</h4>
+            <p class="mb-0">{{ contact_info.work_hours|linebreaksbr }}</p>
+        </div>
+    </div>
+    
+    <!-- Карта -->
+    <div class="col-lg-6">
+        <div class="map-placeholder">
+            <div class="text-center">
+                <i class="bi bi-map display-1 mb-3"></i>
+                <h3>Схема проезда</h3>
+                <p class="text-muted mt-2">г. Москва, ул. Примерная, д. 10</p>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12">
+        <div class="no-data-message">
+            <i class="bi bi-geo-alt display-4 mb-3"></i>
+            <p>Контактная информация загружается...</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Форма обратной связи (опционально) -->
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow-memory border-0">
+            <div class="card-header" style="background-color: #5C4033; color: white;">
+                <h4 class="mb-0"><i class="bi bi-chat-dots"></i> Напишите нам</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Ваше имя</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Сообщение</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-memory btn-lg-memory">
+                        <i class="bi bi-send"></i> Отправить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
