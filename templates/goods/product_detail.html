@@ -1,79 +1,81 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ product.name }} - Интернет-магазин «Память»{% endblock %}
+{% block title %}{{ product.name }} - Память{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-6 mb-4">
-        {% if product.image %}
-        <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
-        {% else %}
-        <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 400px;">
-            <span class="text-muted fs-1">Нет фото</span>
-        </div>
-        {% endif %}
-    </div>
-    <div class="col-md-6">
-        <span class="badge bg-secondary mb-2">{{ product.get_product_type_display }}</span>
-        <h1 class="mb-3">{{ product.name }}</h1>
-        <p class="fs-3 text-primary fw-bold mb-3">{{ product.price }} ₽</p>
-        
-        <hr>
-        
-        <h5>Описание</h5>
-        <p>{{ product.description|linebreaks }}</p>
-        
-        <!-- Характеристики для памятников -->
-        {% if product.monument_length or product.monument_width or product.monument_thickness or product.material %}
-        <div class="card mb-3">
-            <div class="card-header">
-                <strong>Характеристики памятника</strong>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" class="img-fluid rounded" alt="{{ product.name }}" style="border-radius: 16px !important;">
+            {% else %}
+            <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 400px; border-radius: 16px;">
+                <span class="text-muted fs-1">Нет фото</span>
             </div>
-            <ul class="list-group list-group-flush">
-                {% if product.monument_length %}
-                <li class="list-group-item"><strong>Длина:</strong> {{ product.monument_length }} см</li>
-                {% endif %}
-                {% if product.monument_width %}
-                <li class="list-group-item"><strong>Ширина:</strong> {{ product.monument_width }} см</li>
-                {% endif %}
-                {% if product.monument_thickness %}
-                <li class="list-group-item"><strong>Толщина:</strong> {{ product.monument_thickness }} см</li>
-                {% endif %}
-                {% if product.material %}
-                <li class="list-group-item"><strong>Материал:</strong> {{ product.get_material_display }}</li>
-                {% endif %}
-            </ul>
+            {% endif %}
         </div>
-        {% endif %}
-        
-        <!-- Характеристики для плитки -->
-        {% if product.tile_length or product.tile_width or product.coating_type or product.tiles_per_pack %}
-        <div class="card mb-3">
-            <div class="card-header">
-                <strong>Характеристики плитки</strong>
+        <div class="col-md-6">
+            <span class="badge-elegant mb-3">{{ product.get_product_type_display }}</span>
+            <h1 class="mb-3">{{ product.name }}</h1>
+            <p class="fs-3 fw-bold mb-4" style="color: var(--soft-gold);">{{ product.price }} ₽</p>
+            
+            <hr style="border-color: rgba(201, 168, 124, 0.2);">
+            
+            <h5 class="mb-3">Описание</h5>
+            <p>{{ product.description|linebreaks }}</p>
+            
+            <!-- Характеристики для памятников -->
+            {% if product.monument_length or product.monument_width or product.monument_thickness or product.material %}
+            <div class="card elegant-card mb-4">
+                <div class="card-header" style="background: var(--warm-sand); border: none;">
+                    <strong>Характеристики памятника</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% if product.monument_length %}
+                    <li class="list-group-item"><strong>Длина:</strong> {{ product.monument_length }} см</li>
+                    {% endif %}
+                    {% if product.monument_width %}
+                    <li class="list-group-item"><strong>Ширина:</strong> {{ product.monument_width }} см</li>
+                    {% endif %}
+                    {% if product.monument_thickness %}
+                    <li class="list-group-item"><strong>Толщина:</strong> {{ product.monument_thickness }} см</li>
+                    {% endif %}
+                    {% if product.material %}
+                    <li class="list-group-item"><strong>Материал:</strong> {{ product.get_material_display }}</li>
+                    {% endif %}
+                </ul>
             </div>
-            <ul class="list-group list-group-flush">
-                {% if product.tile_length %}
-                <li class="list-group-item"><strong>Длина плитки:</strong> {{ product.tile_length }} см</li>
-                {% endif %}
-                {% if product.tile_width %}
-                <li class="list-group-item"><strong>Ширина плитки:</strong> {{ product.tile_width }} см</li>
-                {% endif %}
-                {% if product.coating_type %}
-                <li class="list-group-item"><strong>Тип покрытия:</strong> {{ product.get_coating_type_display }}</li>
-                {% endif %}
-                {% if product.tiles_per_pack %}
-                <li class="list-group-item"><strong>В упаковке:</strong> {{ product.tiles_per_pack }} шт</li>
-                {% endif %}
-            </ul>
-        </div>
-        {% endif %}
-        
-        <hr>
-        
-        <div class="d-grid gap-2">
-            <a href="{% url 'cart:add' product.pk %}" class="btn btn-primary btn-lg">Добавить в корзину</a>
-            <a href="{% url 'goods:catalog' %}" class="btn btn-outline-secondary">Вернуться в каталог</a>
+            {% endif %}
+            
+            <!-- Характеристики для плитки -->
+            {% if product.tile_length or product.tile_width or product.coating_type or product.tiles_per_pack %}
+            <div class="card elegant-card mb-4">
+                <div class="card-header" style="background: var(--warm-sand); border: none;">
+                    <strong>Характеристики плитки</strong>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% if product.tile_length %}
+                    <li class="list-group-item"><strong>Длина плитки:</strong> {{ product.tile_length }} см</li>
+                    {% endif %}
+                    {% if product.tile_width %}
+                    <li class="list-group-item"><strong>Ширина плитки:</strong> {{ product.tile_width }} см</li>
+                    {% endif %}
+                    {% if product.coating_type %}
+                    <li class="list-group-item"><strong>Тип покрытия:</strong> {{ product.get_coating_type_display }}</li>
+                    {% endif %}
+                    {% if product.tiles_per_pack %}
+                    <li class="list-group-item"><strong>В упаковке:</strong> {{ product.tiles_per_pack }} шт</li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+            
+            <hr style="border-color: rgba(201, 168, 124, 0.2);">
+            
+            <div class="d-grid gap-2">
+                <a href="{% url 'cart:add' product.pk %}" class="btn btn-gold btn-lg">Добавить в корзину</a>
+                <a href="{% url 'goods:catalog' %}" class="btn btn-outline-gold">Вернуться в каталог</a>
+            </div>
         </div>
     </div>
 </div>

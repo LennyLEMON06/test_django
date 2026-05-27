@@ -3,50 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Память - Интернет-магазин ритуальных услуг{% endblock %}</title>
+    <title>{% block title %}Память - Ритуальные услуги с заботой и пониманием{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        .navbar-brand { font-weight: bold; }
-        .hero-section { background: #2c3e50; color: white; padding: 60px 0; }
-        .product-card { transition: transform 0.2s; }
-        .product-card:hover { transform: translateY(-5px); }
-        footer { background: #2c3e50; color: white; padding: 30px 0; margin-top: 50px; }
-        .breadcrumb { background: #f8f9fa; }
+        :root {
+            --deep-charcoal: #1A1A1A;
+            --ash-gray: #2D2D2D;
+            --ivory: #F5F3EF;
+            --warm-sand: #E8E3D8;
+            --soft-gold: #C9A87C;
+            --dusk-sky: #8B7D6B;
+            --pure-white: #FFFFFF;
+            --subtle-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            --elegant-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--ivory);
+            color: var(--deep-charcoal);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--soft-gold);
+        }
+
+        /* Навигация */
+        .navbar {
+            background: rgba(26, 26, 26, 0.95) !important;
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(201, 168, 124, 0.2);
+        }
+
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .navbar-brand i {
+            color: var(--soft-gold);
+            margin-right: 8px;
+        }
+
+        .nav-link {
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--soft-gold) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: var(--soft-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .btn-gold {
+            background: var(--soft-gold);
+            color: var(--deep-charcoal);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background: #b8946a;
+            color: var(--deep-charcoal);
+            transform: translateY(-2px);
+            box-shadow: var(--elegant-shadow);
+        }
+
+        .btn-outline-gold {
+            background: transparent;
+            color: var(--soft-gold);
+            border: 1px solid var(--soft-gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-gold:hover {
+            background: var(--soft-gold);
+            color: var(--deep-charcoal);
+            transform: translateY(-2px);
+        }
+
+        .btn-dark-elegant {
+            background: var(--deep-charcoal);
+            color: var(--ivory);
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dark-elegant:hover {
+            background: var(--ash-gray);
+            transform: translateY(-2px);
+            box-shadow: var(--elegant-shadow);
+        }
+
+        /* Карточки */
+        .elegant-card {
+            background: var(--pure-white);
+            border: none;
+            border-radius: 16px;
+            box-shadow: var(--subtle-shadow);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .elegant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--elegant-shadow);
+        }
+
+        /* Футер */
+        footer {
+            background: var(--deep-charcoal);
+            color: var(--ivory);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(201, 168, 124, 0.2);
+        }
+
+        footer a {
+            color: var(--ivory);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--soft-gold);
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Формы */
+        .elegant-input {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+            background: var(--pure-white);
+        }
+
+        .elegant-input:focus {
+            border-color: var(--soft-gold);
+            box-shadow: 0 0 0 3px rgba(201, 168, 124, 0.1);
+            outline: none;
+        }
+
+        /* Сообщения */
+        .alert {
+            border-radius: 12px;
+            border: none;
+            box-shadow: var(--subtle-shadow);
+        }
+
+        /* Скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--warm-sand);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--soft-gold);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8946a;
+        }
+
+        /* Дополнительные стили для страниц */
+        .product-card {
+            background: var(--pure-white);
+            border: none;
+            border-radius: 16px;
+            box-shadow: var(--subtle-shadow);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--elegant-shadow);
+        }
+
+        .product-card .card-img-top {
+            border-radius: 16px 16px 0 0;
+        }
+
+        .badge-elegant {
+            background: var(--soft-gold);
+            color: var(--deep-charcoal);
+            border-radius: 20px;
+            padding: 0.35rem 0.75rem;
+            font-weight: 500;
+        }
+
+        .breadcrumb {
+            background: var(--warm-sand);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+        }
+
+        .page-link {
+            border-radius: 8px;
+            margin: 0 2px;
+            border: none;
+            color: var(--deep-charcoal);
+            background: var(--pure-white);
+            box-shadow: var(--subtle-shadow);
+        }
+
+        .page-item.active .page-link {
+            background: var(--soft-gold);
+            color: var(--deep-charcoal);
+        }
+
+        .page-link:hover {
+            background: var(--warm-sand);
+            color: var(--deep-charcoal);
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Хедер -->
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'core:index' %}">
-                <i class="bi bi-flower1"></i> Память
+            <a class="navbar-brand text-white" href="{% url 'core:index' %}">
+                <i class="bi bi-candle"></i> Память
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:index' %}">Главная</a>
+                        <a class="nav-link text-white" href="{% url 'core:index' %}">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'goods:catalog' %}">Каталог</a>
+                        <a class="nav-link text-white" href="{% url 'goods:catalog' %}">Каталог</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'news:news_list' %}">Новости</a>
+                        <a class="nav-link text-white" href="{% url 'news:news_list' %}">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'core:contacts' %}">Контакты</a>
+                        <a class="nav-link text-white" href="{% url 'core:contacts' %}">Контакты</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="{% url 'cart:cart' %}">
+                        <a class="nav-link text-white position-relative" href="{% url 'cart:cart' %}">
                             <i class="bi bi-cart3"></i> Корзина
                             {% if cart_count > 0 %}
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background: var(--soft-gold); color: var(--deep-charcoal);">
                                     {{ cart_count }}
                                 </span>
                             {% endif %}
@@ -54,27 +343,30 @@
                     </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
                                 <i class="bi bi-person-circle"></i> {{ user.username }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{% url 'orders:my_orders' %}">Мои заказы</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}">Выход</a></li>
+                                <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выход</a></li>
                             </ul>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Вход</a>
+                            <a class="nav-link text-white" href="{% url 'users:login' %}">Вход</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'users:register' %}">Регистрация</a>
+                            <a class="nav-link text-white" href="{% url 'users:register' %}">Регистрация</a>
                         </li>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Отступ для фиксированного меню -->
+    <div style="height: 76px;"></div>
 
     <!-- Сообщения -->
     {% if messages %}
@@ -95,40 +387,69 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h5><i class="bi bi-flower1"></i> Память</h5>
-                    <p>Интернет-магазин ритуальных услуг и товаров</p>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3"><i class="bi bi-candle"></i> Память</h5>
+                    <p class="text-muted">Организация похорон с заботой и пониманием. С любовью к людям.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5>Контакты</h5>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Контакты</h5>
                     {% if contact %}
-                        <p><i class="bi bi-telephone"></i> {{ contact.phone }}</p>
-                        <p><i class="bi bi-envelope"></i> {{ contact.email }}</p>
-                        <p><i class="bi bi-geo-alt"></i> {{ contact.address }}</p>
+                        <p><i class="bi bi-telephone me-2"></i> {{ contact.phone }}</p>
+                        <p><i class="bi bi-envelope me-2"></i> {{ contact.email }}</p>
+                        <p><i class="bi bi-geo-alt me-2"></i> {{ contact.address }}</p>
                         {% if contact.working_hours %}
-                            <p><i class="bi bi-clock"></i> {{ contact.working_hours }}</p>
+                            <p><i class="bi bi-clock me-2"></i> {{ contact.working_hours }}</p>
                         {% endif %}
                     {% else %}
-                        <p>Телефон: +7 (XXX) XXX-XX-XX</p>
-                        <p>Email: info@pamyat.ru</p>
-                        <p>Адрес: г. Москва, ул. Примерная, д. 1</p>
+                        <p><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</p>
+                        <p><i class="bi bi-envelope me-2"></i> info@pamyat.ru</p>
+                        <p><i class="bi bi-geo-alt me-2"></i> г. Москва, ул. Памятная, д. 1</p>
+                        <p><i class="bi bi-clock me-2"></i> Круглосуточно, без выходных</p>
                     {% endif %}
                 </div>
-                <div class="col-md-4">
-                    <h5>Навигация</h5>
+                <div class="col-md-4 mb-4">
+                    <h5 class="mb-3">Навигация</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'goods:catalog' %}" class="text-white">Каталог</a></li>
-                        <li><a href="{% url 'news:news_list' %}" class="text-white">Новости</a></li>
-                        <li><a href="{% url 'core:contacts' %}" class="text-white">Контакты</a></li>
+                        <li><a href="{% url 'goods:catalog' %}" class="text-white-50">Каталог</a></li>
+                        <li><a href="{% url 'news:news_list' %}" class="text-white-50">Новости</a></li>
+                        <li><a href="{% url 'core:contacts' %}" class="text-white-50">Контакты</a></li>
                     </ul>
                 </div>
             </div>
-            <hr>
-            <p class="text-center mb-0">&copy; 2024 Интернет-магазин «Память». Все права защищены.</p>
+            <hr class="mt-3" style="border-color: rgba(201, 168, 124, 0.2);">
+            <p class="text-center text-muted mb-0">&copy; 2024 Ритуальная служба «Память». С любовью к людям.</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Плавная анимация при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => observer.observe(el));
+            
+            // Плавный скролл для якорных ссылок
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        });
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
