@@ -5,6 +5,21 @@
 {% block content %}
 <h1 class="page-title">Новости магазина</h1>
 
+<!-- Форма поиска -->
+<form method="get" action="" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Поиск по новостям..." value="{{ query }}">
+        <button type="submit" class="btn btn-memory">
+            <i class="bi bi-search"></i> Найти
+        </button>
+        {% if query %}
+        <a href="{% url 'news:news_list' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-x"></i> Сбросить
+        </a>
+        {% endif %}
+    </div>
+</form>
+
 {% if news_list %}
 <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for news_item in news_list %}

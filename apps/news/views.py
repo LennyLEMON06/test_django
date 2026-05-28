@@ -4,10 +4,18 @@ from .models import News
 
 def news_list(request):
     """Список новостей"""
-    news_items = News.objects.all().order_by('-created_at')
+    query = request.GET.get('q', '')
+    
+    if query:
+        news_items = News.objects.filter(
+            title__icontains=query
+        ).order_by('-created_at')
+    else:
+        news_items = News.objects.all().order_by('-created_at')
     
     context = {
-        'news_items': news_items,
+        'news_list': news_items,
+        'query': query,
     }
     return render(request, 'news_list.html', context)
 
