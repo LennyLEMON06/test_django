@@ -26,7 +26,6 @@ class Product(models.Model):
     PRODUCT_TYPE_CHOICES = [
         ('product', 'Товар'),
         ('service', 'Услуга'),
-        ('fence', 'Оградка'),
     ]
 
     MATERIAL_CHOICES = [
@@ -34,6 +33,16 @@ class Product(models.Model):
         ('marble', 'Мрамор'),
         ('limestone', 'Известняк'),
         ('composite', 'Композит'),
+        ('metal', 'Металл'),
+        ('other', 'Другое'),
+    ]
+
+    FENCE_MATERIAL_CHOICES = [
+        ('metal_profile', 'Металлический профиль'),
+        ('steel_pipe', 'Стальная труба'),
+        ('wrought_iron', 'Кованое железо'),
+        ('aluminum', 'Алюминий'),
+        ('chain_link', 'Сетка рабица'),
         ('other', 'Другое'),
     ]
 
@@ -75,7 +84,7 @@ class Product(models.Model):
     # Поля для оградки
     fence_height = models.DecimalField("Высота оградки (см)", max_digits=6, decimal_places=1, blank=True, null=True)
     fence_pattern_height = models.DecimalField("Высота рисунка (см)", max_digits=6, decimal_places=1, blank=True, null=True)
-    fence_material = models.CharField("Материал оградки", max_length=50, blank=True, default='')
+    fence_material = models.CharField("Материал оградки", max_length=30, choices=FENCE_MATERIAL_CHOICES, blank=True, default='')
 
     created_at = models.DateTimeField("Дата создания", auto_now_add=True, null=True)
     updated_at = models.DateTimeField("Дата обновления", auto_now=True, null=True)
