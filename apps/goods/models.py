@@ -1,5 +1,23 @@
 from django.db import models
 from django.utils.text import slugify
+import re
+
+
+def slugify_russian(text):
+    """Transliterate Cyrillic text to Latin for slug generation."""
+    CYRILLIC_TO_LATIN = {
+        'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'yo', 'ж': 'zh',
+        'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
+        'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts',
+        'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu',
+        'я': 'ya'
+    }
+    text = text.lower()
+    result = ''
+    for char in text:
+        result += CYRILLIC_TO_LATIN.get(char, char)
+    text = re.sub(r'[^a-z0-9]+', '-', result).strip('-')
+    return text
 
 
 class Category(models.Model):
@@ -17,7 +35,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify_russian(self.name)
         super().save(*args, **kwargs)
 
 
@@ -99,5 +117,5 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify_russian(self.name)
         super().save(*args, **kwargs)
