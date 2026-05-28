@@ -47,13 +47,14 @@
         <div class="col-lg-6">
             <div class="order-form-card">
                 <h5 class="mb-3">Данные для доставки:</h5>
-                <form method="post" action="{% url 'orders:create_order' %}">
+                <form method="post" action="{% url 'orders:create_order' %}" id="order-form">
                     {% csrf_token %}
                     
                     <div class="mb-3">
                         <label for="phone" class="form-label">Телефон <span class="text-danger">*</span></label>
-                        <input type="tel" class="form-control" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
+                        <input type="tel" class="form-control" id="phone" name="phone" required placeholder="+7 (___) ___-__-__" pattern="^\+7\s?\(?\d{3}\)?\s?\d{3}-\d{2}-\d{2}$">
                         <small class="text-muted">Мы свяжемся с вами для подтверждения заказа</small>
+                        <small class="text-danger invalid-feedback" id="phone-error" style="display: none;">Пожалуйста, введите корректный номер телефона в формате +7 (XXX) XXX-XX-XX</small>
                     </div>
                     
                     <div class="mb-3">
@@ -79,4 +80,61 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneInput = document.getElementById('phone');
+    const phoneError = document.getElementById('phone-error');
+    const orderForm = document.getElementById('order-form');
+    
+    // Маска для ввода телефона
+    phoneInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        
+        if (value.length > 0) {
+            if (value.startsWith('7')) {
+                value = value.substring(1);
+            }
+            if (value.length > 10) {
+                value = value.substring(0, 10);
+            }
+        }
+        
+        let formattedValue = '+7';
+        if (value.length > 0) {
+            formattedValue += ' (' + value.substring(0, 3);
+        }
+        if (value.length >= 3) {
+            formattedValue += ') ' + value.substring(3, 6);
+        }
+        if (value.length >= 6) {
+            formattedValue += '-' + value.substring(6, 8);
+        }
+        if (value.length >= 8) {
+            formattedValue += '-' + value.substring(8, 10);
+        }
+        
+        e.target.value = formattedValue;
+        
+        // Скрываем ошибку при вводе
+        if (phoneError.style.display !== 'none') {
+            phoneError.style.display = 'none';
+            phoneInput.classList.remove('is-invalid');
+        }
+    });
+    
+    // Валидация при отправке формы
+    orderForm.addEventListener('submit', function(e) {
+        const phonePattern = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/;
+        const phoneValue = phoneInput.value.trim();
+        
+        if (!phonePattern.test(phoneValue)) {
+            e.preventDefault();
+            phoneError.style.display = 'block';
+            phoneInput.classList.add('is-invalid');
+            phoneInput.focus();
+        }
+    });
+});
+</script>
 {% endblock %}
