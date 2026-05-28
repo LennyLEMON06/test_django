@@ -10,12 +10,16 @@ def catalog_view(request):
     # Фильтры
     selected_categories = request.GET.getlist('category')
     show_popular = request.GET.get('popular') == '1'
+    show_services = request.GET.get('services') == '1'
     
     if selected_categories:
         products = products.filter(category__slug__in=selected_categories)
     
     if show_popular:
         products = products.filter(is_popular=True)
+    
+    if show_services:
+        products = products.filter(product_type='service')
     
     # Пагинация
     paginator = Paginator(products, 9)  # 9 товаров на страницу
@@ -29,6 +33,7 @@ def catalog_view(request):
         'categories': categories,
         'selected_categories': selected_categories,
         'show_popular': show_popular,
+        'show_services': show_services,
         'page_obj': page_obj,
     }
     
