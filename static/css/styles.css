@@ -438,6 +438,9 @@ a:hover {
     box-shadow: 0 2px 8px rgba(92, 64, 51, 0.1);
     overflow: hidden;
     transition: transform var(--transition-speed) ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .news-card:hover {
@@ -452,6 +455,9 @@ a:hover {
 
 .news-card-body {
     padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .news-card-title {
@@ -469,6 +475,7 @@ a:hover {
 .news-card-text {
     color: var(--color-text-main);
     margin-bottom: 1rem;
+    flex: 1;
 }
 
 /* Контакты */
