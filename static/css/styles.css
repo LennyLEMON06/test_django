@@ -506,6 +506,11 @@ a:hover {
     font-size: 1.2rem;
 }
 
+#yandex-map {
+    border: 2px solid var(--color-border);
+    box-shadow: 0 2px 8px rgba(92, 64, 51, 0.1);
+}
+
 /* Корзина */
 .cart-table {
     background-color: var(--color-white);

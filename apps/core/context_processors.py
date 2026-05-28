@@ -1,3 +1,4 @@
+from django.conf import settings
 from .models import ContactInfo
 from apps.cart.models import Cart
 
@@ -27,4 +28,5 @@ def contact_info(request):
     return {
         'contact_info': get_contact_info(),
         'cart_count': get_cart_count(request),
+        'settings': settings,
     }

@@ -149,6 +149,11 @@ LOGIN_REDIRECT_URL = '/users/profile/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'auth:login'
 
+# Яндекс.Карты API
+YANDEX_MAP_API_KEY = ''  # При необходимости можно добавить API ключ
+YANDEX_MAP_LATITUDE = 55.752024  # Москва, Красная площадь
+YANDEX_MAP_LONGITUDE = 37.617499
+
 # Jazzmin configuration (бежево-коричневая тема)
 JAZZMIN_SETTINGS = {
     "site_title": "Память - Администрирование",
