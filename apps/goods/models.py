@@ -26,6 +26,7 @@ class Product(models.Model):
     PRODUCT_TYPE_CHOICES = [
         ('product', 'Товар'),
         ('service', 'Услуга'),
+        ('fence', 'Оградка'),
     ]
 
     MATERIAL_CHOICES = [
@@ -70,6 +71,11 @@ class Product(models.Model):
     # Поля для услуг
     service_duration = models.PositiveIntegerField("Срок выполнения (дни)", blank=True, null=True)
     service_notes = models.TextField("Особенности услуги", blank=True, default='')
+
+    # Поля для оградки
+    fence_height = models.DecimalField("Высота оградки (см)", max_digits=6, decimal_places=1, blank=True, null=True)
+    fence_pattern_height = models.DecimalField("Высота рисунка (см)", max_digits=6, decimal_places=1, blank=True, null=True)
+    fence_material = models.CharField("Материал оградки", max_length=50, blank=True, default='')
 
     created_at = models.DateTimeField("Дата создания", auto_now_add=True, null=True)
     updated_at = models.DateTimeField("Дата обновления", auto_now=True, null=True)

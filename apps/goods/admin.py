@@ -32,4 +32,8 @@ class ProductAdmin(admin.ModelAdmin):
             'fields': ('service_duration', 'service_notes'),
             'classes': ('collapse',)
         }),
+        ('Характеристики оградки', {
+            'fields': ('fence_height', 'fence_pattern_height', 'fence_material'),
+            'classes': ('collapse',)
+        }),
     )
