@@ -20,35 +20,16 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Database
 db.sqlite3
-*.db
+*.sqlite3
 
 # Environment
 .env
 .env.local
+.env.dev
+.env.production
 .env.*
-.env~*
-.venv/
-venv/
-ENV/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-
-# Logs
-*.log
-
-# Coverage
-.coverage
-coverage/
-htmlcov/
-
-# Migration files (if not already tracked)
-*.pyc
 ```
