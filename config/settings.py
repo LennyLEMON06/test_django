@@ -151,8 +151,8 @@ LOGIN_URL = 'auth:login'
 
 # Яндекс.Карты API
 YANDEX_MAP_API_KEY = ''  # При необходимости можно добавить API ключ
-YANDEX_MAP_LATITUDE = 55.752024  # Москва, Красная площадь
-YANDEX_MAP_LONGITUDE = 37.617499
+YANDEX_MAP_LATITUDE = 51.715052  # деревня 1-я Моква, Санаторная улица, 26
+YANDEX_MAP_LONGITUDE = 36.088505
 
 # Jazzmin configuration (бежево-коричневая тема)
 JAZZMIN_SETTINGS = {
