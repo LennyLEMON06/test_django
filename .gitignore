@@ -20,16 +20,13 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-MANIFEST
 
 # Database
 db.sqlite3
-*.sqlite3
+*.db
 
 # Environment
 .env
 .env.local
-.env.dev
-.env.production
 .env.*
 ```
