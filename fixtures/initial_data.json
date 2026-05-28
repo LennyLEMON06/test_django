@@ -264,7 +264,66 @@
     "coating_type": "",
     "quantity_per_pack": null,
     "service_duration": null,
-    "service_notes": ""
+    "service_notes": "",
+    "fence_height": null,
+    "fence_pattern_height": null,
+    "fence_material": ""
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 7,
+  "fields": {
+    "name": "Оградка металлическая «Классическая»",
+    "slug": "ogradka-metallicheskaya-klassicheskaya",
+    "description": "Металлическая оградка для захоронения с классическим рисунком. Высота оградки 80 см, высота рисунка 40 см. Материал: сталь с порошковой покраской.",
+    "price": "12000.00",
+    "image": "",
+    "category": 5,
+    "product_type": "fence",
+    "is_popular": true,
+    "length_p": null,
+    "width_p": null,
+    "thickness_p": null,
+    "material": "",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "service_duration": null,
+    "service_notes": "",
+    "fence_height": "80.0",
+    "fence_pattern_height": "40.0",
+    "fence_material": "Сталь с порошковой покраской"
+  }
+},
+{
+  "model": "goods.product",
+  "pk": 8,
+  "fields": {
+    "name": "Оградка кованая «Венеция»",
+    "slug": "ogradka-kovanaya-venetsiya",
+    "description": "Элегантная кованая оградка с декоративными элементами в стиле Венеция. Высота оградки 100 см, высота рисунка 60 см. Материал: кованое железо с антикоррозийным покрытием.",
+    "price": "25000.00",
+    "image": "",
+    "category": 5,
+    "product_type": "fence",
+    "is_popular": false,
+    "length_p": null,
+    "width_p": null,
+    "thickness_p": null,
+    "material": "",
+    "tile_length": null,
+    "tile_width": null,
+    "tile_thickness": null,
+    "coating_type": "",
+    "quantity_per_pack": null,
+    "service_duration": null,
+    "service_notes": "",
+    "fence_height": "100.0",
+    "fence_pattern_height": "60.0",
+    "fence_material": "Кованое железо"
   }
 },
 {

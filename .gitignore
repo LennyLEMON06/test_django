@@ -29,4 +29,26 @@ db.sqlite3
 .env
 .env.local
 .env.*
+.env~*
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Logs
+*.log
+
+# Coverage
+.coverage
+coverage/
+htmlcov/
+
+# Migration files (if not already tracked)
+*.pyc
 ```

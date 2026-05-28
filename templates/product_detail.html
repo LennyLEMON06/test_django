@@ -140,6 +140,32 @@
             {% endif %}
         </div>
     </div>
+    
+    {% elif product.product_type == 'fence' %}
+    <!-- Характеристики оградки -->
+    <h4><i class="bi bi-fence"></i> Характеристики оградки</h4>
+    <div class="row">
+        <div class="col-md-6">
+            {% if product.fence_height %}
+            <div class="characteristic-row">
+                <span class="characteristic-label">Высота оградки:</span>
+                <span class="characteristic-value">{{ product.fence_height }} см</span>
+            </div>
+            {% endif %}
+            {% if product.fence_pattern_height %}
+            <div class="characteristic-row">
+                <span class="characteristic-label">Высота рисунка:</span>
+                <span class="characteristic-value">{{ product.fence_pattern_height }} см</span>
+            </div>
+            {% endif %}
+            {% if product.fence_material %}
+            <div class="characteristic-row">
+                <span class="characteristic-label">Материал:</span>
+                <span class="characteristic-value">{{ product.fence_material }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
     {% endif %}
 </div>
 
