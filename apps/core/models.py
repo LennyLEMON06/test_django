@@ -31,3 +31,20 @@ class Slider(models.Model):
 
     def __str__(self):
         return self.title or f"Слайд #{self.id}"
+
+
+class ContactMessage(models.Model):
+    """Сообщения от пользователей через форму обратной связи"""
+    name = models.CharField("Имя", max_length=100)
+    email = models.EmailField("Email")
+    message = models.TextField("Сообщение")
+    created_at = models.DateTimeField("Дата создания", auto_now_add=True)
+    is_processed = models.BooleanField("Обработано", default=False)
+
+    class Meta:
+        verbose_name = "Сообщение"
+        verbose_name_plural = "Сообщения с формы обратной связи"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"Сообщение от {self.name} ({self.created_at.strftime('%d.%m.%Y')})"
