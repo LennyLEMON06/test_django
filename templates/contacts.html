@@ -61,16 +61,16 @@
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
-                        <label for="name" class="form-label">Ваше имя</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="name" class="form-label">Ваше имя <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" required placeholder="Введите ваше имя">
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" required placeholder="example@mail.ru">
                     </div>
                     <div class="mb-3">
-                        <label for="message" class="form-label">Сообщение</label>
-                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        <label for="message" class="form-label">Сообщение <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Введите ваше сообщение"></textarea>
                     </div>
                     <button type="submit" class="btn btn-memory btn-lg-memory">
                         <i class="bi bi-send"></i> Отправить
